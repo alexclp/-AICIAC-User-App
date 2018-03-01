@@ -1,24 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14087.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0Iy-Vz-6t4">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14075.4"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Initial View Controller-->
+        <scene sceneID="x0L-rP-peY">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController id="0Iy-Vz-6t4" customClass="InitialViewController" customModule="_AICIAC_User_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JFV-Yl-9Ij">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="UvS-T7-I71"/>
                     </view>
+                    <connections>
+                        <segue destination="4jW-2o-Hfa" kind="show" identifier="showMapSegue" id="ffj-TO-azQ"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xRV-l5-2JC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="778" y="24"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3W5-iS-fdk">
+            <objects>
+                <navigationController id="4jW-2o-Hfa" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="d81-2R-9lt">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="7D4-lv-fhG" kind="relationship" relationship="rootViewController" id="NZo-J3-7Xl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WmO-Iw-bcx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1700" y="24"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="iie-Ff-fef">
+            <objects>
+                <viewController id="7D4-lv-fhG" customClass="MapViewController" customModule="_AICIAC_User_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VeH-xI-AqZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jjZ-TR-gOZ">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                            </imageView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="wxJ-ge-24t">
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="wxJ-ge-24t" secondAttribute="trailing" id="6Ut-wr-r85"/>
+                            <constraint firstItem="jjZ-TR-gOZ" firstAttribute="bottom" secondItem="CDW-iJ-l4e" secondAttribute="bottom" id="WKG-G3-7T0"/>
+                            <constraint firstItem="wxJ-ge-24t" firstAttribute="top" secondItem="CDW-iJ-l4e" secondAttribute="top" id="aWW-sq-hG7"/>
+                            <constraint firstItem="wxJ-ge-24t" firstAttribute="trailing" secondItem="jjZ-TR-gOZ" secondAttribute="trailing" id="fl0-jJ-oQS"/>
+                            <constraint firstItem="jjZ-TR-gOZ" firstAttribute="top" secondItem="wxJ-ge-24t" secondAttribute="bottom" id="lVd-LS-Tyi"/>
+                            <constraint firstItem="wxJ-ge-24t" firstAttribute="leading" secondItem="jjZ-TR-gOZ" secondAttribute="leading" id="nuI-vJ-Veo"/>
+                            <constraint firstItem="wxJ-ge-24t" firstAttribute="leading" secondItem="VeH-xI-AqZ" secondAttribute="leading" id="tOO-jt-QDW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="CDW-iJ-l4e"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="mc4-Mh-HY6"/>
+                    <connections>
+                        <outlet property="mapImageView" destination="jjZ-TR-gOZ" id="BNg-Js-zKq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hNg-Zx-hUx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2632.8000000000002" y="23.838080959520241"/>
         </scene>
     </scenes>
 </document>
