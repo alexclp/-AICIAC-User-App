@@ -71,10 +71,8 @@
 				0F34AEDC202B458300559EDB /* Floor plans */,
 				0F34AECA202B338200559EDB /* AppDelegate.swift */,
 				0F95B5342048344000E42648 /* Extensions.swift */,
-				0F95B532204833FA00E42648 /* HTTPClient.swift */,
-				0F95B55C2049A53300E42648 /* NavigationHelper.swift */,
-				0F34AECC202B338200559EDB /* InitialViewController.swift */,
-				0F95B55A2048546100E42648 /* MapViewController.swift */,
+				0F95B55F204AC62E00E42648 /* Model */,
+				0F95B55E204AC61E00E42648 /* Controller */,
 				0F34AECE202B338200559EDB /* Main.storyboard */,
 				0F34AED1202B338500559EDB /* Assets.xcassets */,
 				0F34AED3202B338500559EDB /* LaunchScreen.storyboard */,
@@ -97,6 +95,24 @@
 				0F95B558204853A500E42648 /* CoreMotion.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0F95B55E204AC61E00E42648 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0F34AECC202B338200559EDB /* InitialViewController.swift */,
+				0F95B55A2048546100E42648 /* MapViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0F95B55F204AC62E00E42648 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0F95B532204833FA00E42648 /* HTTPClient.swift */,
+				0F95B55C2049A53300E42648 /* NavigationHelper.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
