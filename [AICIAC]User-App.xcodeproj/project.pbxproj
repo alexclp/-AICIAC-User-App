@@ -18,6 +18,7 @@
 		0F95B559204853A500E42648 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F95B558204853A500E42648 /* CoreMotion.framework */; };
 		0F95B55B2048546100E42648 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95B55A2048546100E42648 /* MapViewController.swift */; };
 		0F95B55D2049A53300E42648 /* NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95B55C2049A53300E42648 /* NavigationHelper.swift */; };
+		0F95B561204AC65400E42648 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95B560204AC65400E42648 /* Location.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		0F95B558204853A500E42648 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		0F95B55A2048546100E42648 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		0F95B55C2049A53300E42648 /* NavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHelper.swift; sourceTree = "<group>"; };
+		0F95B560204AC65400E42648 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			children = (
 				0F95B532204833FA00E42648 /* HTTPClient.swift */,
 				0F95B55C2049A53300E42648 /* NavigationHelper.swift */,
+				0F95B560204AC65400E42648 /* Location.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				0F95B533204833FA00E42648 /* HTTPClient.swift in Sources */,
 				0F95B55B2048546100E42648 /* MapViewController.swift in Sources */,
 				0F95B5352048344000E42648 /* Extensions.swift in Sources */,
+				0F95B561204AC65400E42648 /* Location.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
