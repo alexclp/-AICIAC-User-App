@@ -18,6 +18,8 @@ class MapViewController: UIViewController {
 		
 		showFloorPlan()
 		self.navigationItem.title = imageName
+		
+		NavigationHelper.shared.getCurrentPosition()
     }
 	
 	func showFloorPlan() {
