@@ -13,11 +13,11 @@ class NavigationHelper: NSObject {
 	
 	private override init() { }
 	
-	func getCurrentPosition() {
+	func getCurrentPosition(completion: @escaping (Bool, [String: Any]?) -> Void) {
 		requestScan { (success) in
 			if success == true {
 				print("REQUEST SCAN --- SUCCESS")
-				sleep(5)
+				sleep(8)
 				print("WOKE UP --- SUCCESS")
 				self.getMeasurements(completion: { (response, json) in
 					if response == true {
@@ -27,10 +27,11 @@ class NavigationHelper: NSObject {
 						let params = ["measurements": json]
 						HTTPClient.shared.request(urlString: urlString, method: "POST", parameters: params, completion: { (response, data) in
 							print(response)
-							guard let data = data else { return }
+							guard let data = data else { completion(false, nil); return }
 							do {
 								if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
 									print(json)
+									completion(true, json)
 									
 									self.deleteAllTempMeasurements(completion: { (success) in
 										if success == true {
@@ -40,10 +41,12 @@ class NavigationHelper: NSObject {
 								}
 							} catch {
 								print(error.localizedDescription)
+								completion(false, nil)
 							}
 						})
 					} else {
 						print("FAILED TO GET MEASUREMENTS")
+						completion(false, nil)
 					}
 				})
 			}
@@ -57,7 +60,7 @@ class NavigationHelper: NSObject {
 		let params = ["locationID": 0,
 					  "roomID": 0,
 					  "shouldScan": 1,
-					  "storeData":  0]
+					  "storeData": 0]
 			as [String: Any]
 		HTTPClient.shared.request(urlString: urlString + "/scanSwitch/1", method: "PATCH", parameters: params) { (success, responseJSON) in
 			if success == true {

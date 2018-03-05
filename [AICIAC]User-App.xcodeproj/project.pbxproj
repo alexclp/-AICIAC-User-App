@@ -19,6 +19,9 @@
 		0F95B55B2048546100E42648 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95B55A2048546100E42648 /* MapViewController.swift */; };
 		0F95B55D2049A53300E42648 /* NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95B55C2049A53300E42648 /* NavigationHelper.swift */; };
 		0F95B561204AC65400E42648 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95B560204AC65400E42648 /* Location.swift */; };
+		0F95B563204AEA6500E42648 /* SearchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95B562204AEA6500E42648 /* SearchHelper.swift */; };
+		0F95B565204AEAF100E42648 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95B564204AEAF100E42648 /* Room.swift */; };
+		0FB7B9F8204D697A007CE27C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB7B9F7204D697A007CE27C /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		0F95B55A2048546100E42648 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		0F95B55C2049A53300E42648 /* NavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHelper.swift; sourceTree = "<group>"; };
 		0F95B560204AC65400E42648 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		0F95B562204AEA6500E42648 /* SearchHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHelper.swift; sourceTree = "<group>"; };
+		0F95B564204AEAF100E42648 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		0FB7B9F7204D697A007CE27C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,8 +118,11 @@
 			isa = PBXGroup;
 			children = (
 				0F95B532204833FA00E42648 /* HTTPClient.swift */,
+				0FB7B9F7204D697A007CE27C /* Utils.swift */,
 				0F95B55C2049A53300E42648 /* NavigationHelper.swift */,
+				0F95B562204AEA6500E42648 /* SearchHelper.swift */,
 				0F95B560204AC65400E42648 /* Location.swift */,
+				0F95B564204AEAF100E42648 /* Room.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -193,7 +202,10 @@
 				0F34AECD202B338200559EDB /* InitialViewController.swift in Sources */,
 				0F95B55D2049A53300E42648 /* NavigationHelper.swift in Sources */,
 				0F34AECB202B338200559EDB /* AppDelegate.swift in Sources */,
+				0F95B563204AEA6500E42648 /* SearchHelper.swift in Sources */,
 				0F95B533204833FA00E42648 /* HTTPClient.swift in Sources */,
+				0FB7B9F8204D697A007CE27C /* Utils.swift in Sources */,
+				0F95B565204AEAF100E42648 /* Room.swift in Sources */,
 				0F95B55B2048546100E42648 /* MapViewController.swift in Sources */,
 				0F95B5352048344000E42648 /* Extensions.swift in Sources */,
 				0F95B561204AC65400E42648 /* Location.swift in Sources */,

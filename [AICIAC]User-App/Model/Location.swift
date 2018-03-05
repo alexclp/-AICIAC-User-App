@@ -18,7 +18,7 @@ class Location: NSObject {
 	var standardHeight: Double
 	var standardWidth: Double
 	
-	init(x: Double, y: Double, lat: Double, long: Double, id: Int, roomID: Int, standardHeight: Double, standardWidth: Double) {
+	init(x: Double = 0.0, y: Double = 0.0, lat: Double = 0.0, long: Double = 0.0, id: Int = 0, roomID: Int = 0, standardHeight: Double = 0.0, standardWidth: Double = 0.0) {
 		self.x = x
 		self.y = y
 		self.lat = lat
