@@ -21,7 +21,16 @@ class MapViewController: UIViewController {
 		self.navigationItem.title = imageName
 		
 		showCurrentLocation()
+		setupNavBarButtons()
     }
+	
+	func setupNavBarButtons() {
+		let left = UIBarButtonItem(title: "Destinations", style: .plain, target: self, action: #selector(self.destinationsButtonPressed(sender:)))
+		self.navigationItem.leftBarButtonItem = left
+		
+		let right = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(self.cameraButtonPressed(sender:)))
+		self.navigationItem.rightBarButtonItem = right
+	}
 	
 	func showFloorPlan() {
 		if let image = UIImage(named: imageName) {
@@ -33,14 +42,14 @@ class MapViewController: UIViewController {
 		NavigationHelper.shared.getCurrentPosition { (success, data) in
 			if success == true {
 				guard let data = data else { return }
-				guard let x = data["x"] as? Double else { return }
-				guard let y = data["y"] as? Double else { return }
-				guard let standardHeight = data["standardHeight"] as? Double else { return }
-				guard let standardWidth = data["standardWidth"] as? Double else { return }
-				guard let lat = data["latitude"] as? Double else { return }
-				guard let long = data["longigtude"] as? Double else { return }
-				guard let roomID = data["roomID"] as? Int else { return }
-				guard let id = data["id"] as? Int else { return }
+				guard let x = data["x"] as? Double else { print("Failed to get x"); return }
+				guard let y = data["y"] as? Double else { print("Faield to get y"); return }
+				guard let standardHeight = data["standardHeight"] as? Double else { print("Failed to get standard height"); return }
+				guard let standardWidth = data["standardWidth"] as? Double else { print("Failed standard width"); return }
+				guard let lat = data["latitude"] as? Double else { print("Failed to get lat"); return }
+				guard let long = data["longitude"] as? Double else { print("Failed to get long"); return }
+				guard let roomID = data["roomID"] as? Int else { print("Failed to get room ID"); return }
+				guard let id = data["id"] as? Int else { print("Failed to get id"); return }
 				
 				DispatchQueue.main.async {
 					guard let interpolatedPoint = Utils.interpolatePointToCurrentSize(point: CGPoint(x: x, y: y), from: CGSize(width: standardWidth, height: standardHeight), in: self.view) else { return }
@@ -71,5 +80,14 @@ class MapViewController: UIViewController {
 		
 		return circle
 	}
+	
+	// MARK: - User interaction
 
+	@objc func destinationsButtonPressed(sender: UIBarButtonItem) {
+		performSegue(withIdentifier: "showDestinationsSegue", sender: self)
+	}
+	
+	@objc func cameraButtonPressed(sender: UIBarButtonItem) {
+		
+	}
 }
