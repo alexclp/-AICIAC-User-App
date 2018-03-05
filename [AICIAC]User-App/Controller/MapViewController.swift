@@ -20,17 +20,7 @@ class MapViewController: UIViewController {
 		showFloorPlan()
 		self.navigationItem.title = imageName
 		
-//		NavigationHelper.shared.getCurrentPosition()
 		showCurrentLocation()
-		
-//		SearchHelper.shared.searchRoom(query: "7") { (response, rooms) in
-//			print(response)
-//			if response == true {
-//				if let rooms = rooms {
-//					print(rooms)
-//				}
-//			}
-//		}
     }
 	
 	func showFloorPlan() {
@@ -47,13 +37,17 @@ class MapViewController: UIViewController {
 				guard let y = data["y"] as? Double else { return }
 				guard let standardHeight = data["standardHeight"] as? Double else { return }
 				guard let standardWidth = data["standardWidth"] as? Double else { return }
+				guard let lat = data["latitude"] as? Double else { return }
+				guard let long = data["longigtude"] as? Double else { return }
+				guard let roomID = data["roomID"] as? Int else { return }
+				guard let id = data["id"] as? Int else { return }
 				
 				DispatchQueue.main.async {
 					guard let interpolatedPoint = Utils.interpolatePointToCurrentSize(point: CGPoint(x: x, y: y), from: CGSize(width: standardWidth, height: standardHeight), in: self.view) else { return }
-//					let view = self.drawPositionCircleView(in: CGRect(x: interpolatedPoint.x, y: interpolatedPoint.y, width: 10.0, height: 10.0))
 					let view = UIView(frame: CGRect(x: interpolatedPoint.x, y: interpolatedPoint.y, width: 10.0, height: 10.0))
 					view.backgroundColor = UIColor.red
 					self.view.addSubview(view)
+					self.currentLocation = Location.init(x: x, y: y, lat: lat, long: long, id: id, roomID: roomID, standardHeight: standardHeight, standardWidth: standardWidth)
 				}
 			}
 		}
@@ -62,7 +56,7 @@ class MapViewController: UIViewController {
 	func drawPositionCircleView(in rect: CGRect) -> UIView {
 		let circle = UIView(frame: rect)
 		
-//		circle.center = rect.center
+		circle.center = self.view.center
 		circle.layer.cornerRadius = 50
 		circle.backgroundColor = UIColor.black
 		circle.clipsToBounds = true
