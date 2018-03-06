@@ -13,6 +13,7 @@ class MapViewController: UIViewController {
 	
 	var currentLocation = Location()
 	var imageName = ""
+	var path = [Location]()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,13 @@ class MapViewController: UIViewController {
 		showCurrentLocation()
 		setupNavBarButtons()
     }
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "showDestinationsSegue" {
+			let destination = segue.destination as! DestinationsViewController
+			destination.delegate = self
+		}
+	}
 	
 	func setupNavBarButtons() {
 		let left = UIBarButtonItem(title: "Destinations", style: .plain, target: self, action: #selector(self.destinationsButtonPressed(sender:)))
@@ -54,12 +62,69 @@ class MapViewController: UIViewController {
 				DispatchQueue.main.async {
 					guard let interpolatedPoint = Utils.interpolatePointToCurrentSize(point: CGPoint(x: x, y: y), from: CGSize(width: standardWidth, height: standardHeight), in: self.view) else { return }
 					let view = UIView(frame: CGRect(x: interpolatedPoint.x, y: interpolatedPoint.y, width: 10.0, height: 10.0))
-					view.backgroundColor = UIColor.red
+					view.backgroundColor = UIColor.blue
 					self.view.addSubview(view)
 					self.currentLocation = Location.init(x: x, y: y, lat: lat, long: long, id: id, roomID: roomID, standardHeight: standardHeight, standardWidth: standardWidth)
+					self.currentLocation.view = view
 				}
 			}
 		}
+	}
+	
+	func showRouteToDestination(destination: Room) {
+		NavigationHelper.shared.getConnectingLocation(in: destination) { (success, location) in
+			if success == true {
+				NavigationHelper.shared.getRoute(from: self.currentLocation, to: location!, completion: { (success, path) in
+					if success == true {
+						self.path.append(self.currentLocation)
+						let group = DispatchGroup()
+						for element in path! {
+							group.enter()
+							NavigationHelper.shared.getLocation(with: element, completion: { (response, location) in
+								if response == true {
+									DispatchQueue.main.async {
+										guard let interpolatedPoint = Utils.interpolatePointToCurrentSize(point: CGPoint(x: location!.x, y: location!.y), from: CGSize(width: location!.standardWidth, height: location!.standardHeight), in: self.view) else { return }
+										let view = UIView(frame: CGRect(x: interpolatedPoint.x, y: interpolatedPoint.y, width: 10.0, height: 10.0))
+										view.backgroundColor = UIColor.red
+										self.view.addSubview(view)
+										self.path.append(location!)
+									}
+								}
+								group.leave()
+							})
+						}
+						
+						group.notify(queue: DispatchQueue.main, execute: {
+							DispatchQueue.main.async {
+								self.drawPath()
+							}
+						})
+					}
+				})
+			}
+		}
+	}
+	
+	func drawPath() {
+		var first = path[0]
+		for index in 1..<path.count {
+			if let point1 = Utils.interpolatePointToCurrentSize(point: CGPoint(x: first.x, y: first.y), from: CGSize(width: first.standardWidth, height: first.standardHeight), in: self.view), let point2 = Utils.interpolatePointToCurrentSize(point: CGPoint(x: path[index].x, y: path[index].y), from: CGSize(width: path[index].standardWidth, height: path[index].standardHeight), in: self.view) {
+				addLine(fromPoint: point1, toPoint: point2)
+			}
+			first = path[index]
+		}
+	}
+	
+	func addLine(fromPoint start: CGPoint, toPoint end:CGPoint) {
+		let line = CAShapeLayer()
+		let linePath = UIBezierPath()
+		linePath.move(to: start)
+		linePath.addLine(to: end)
+		line.path = linePath.cgPath
+		line.strokeColor = UIColor.red.cgColor
+		line.lineWidth = 1
+		line.lineJoin = kCALineJoinRound
+		self.view.layer.addSublayer(line)
 	}
 	
 	func drawPositionCircleView(in rect: CGRect) -> UIView {
@@ -89,5 +154,11 @@ class MapViewController: UIViewController {
 	
 	@objc func cameraButtonPressed(sender: UIBarButtonItem) {
 		
+	}
+}
+
+extension MapViewController: DestinationSelectedDelegate {
+	func userSelectedDestination(destination: Room) {
+		showRouteToDestination(destination: destination)
 	}
 }

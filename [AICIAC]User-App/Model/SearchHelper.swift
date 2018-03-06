@@ -29,8 +29,8 @@ class SearchHelper: NSObject {
 						var rooms = [Room]()
 						
 						for element in json {
-							if let name = element["name"] as? String, let floor = element["floorNumber"] as? Int {
-								rooms.append(Room.init(name: name, floorNumber: floor))
+							if let name = element["name"] as? String, let floor = element["floorNumber"] as? Int, let id = element["id"] as? Int {
+								rooms.append(Room.init(id: id, name: name, floorNumber: floor))
 							}
 						}
 						completion(true, rooms)

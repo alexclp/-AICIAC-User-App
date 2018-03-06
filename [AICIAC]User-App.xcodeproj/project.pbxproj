@@ -23,6 +23,7 @@
 		0F95B565204AEAF100E42648 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95B564204AEAF100E42648 /* Room.swift */; };
 		0FB7B9F8204D697A007CE27C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB7B9F7204D697A007CE27C /* Utils.swift */; };
 		0FB7B9FA204D81E5007CE27C /* DestinationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB7B9F9204D81E5007CE27C /* DestinationsViewController.swift */; };
+		0FB7B9FD204ED8AA007CE27C /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB7B9FC204ED8AA007CE27C /* LineView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		0F95B564204AEAF100E42648 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		0FB7B9F7204D697A007CE27C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		0FB7B9F9204D81E5007CE27C /* DestinationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationsViewController.swift; sourceTree = "<group>"; };
+		0FB7B9FC204ED8AA007CE27C /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				0F95B5342048344000E42648 /* Extensions.swift */,
 				0F95B55F204AC62E00E42648 /* Model */,
 				0F95B55E204AC61E00E42648 /* Controller */,
+				0FB7B9FB204ED880007CE27C /* View */,
 				0F34AECE202B338200559EDB /* Main.storyboard */,
 				0F34AED1202B338500559EDB /* Assets.xcassets */,
 				0F34AED3202B338500559EDB /* LaunchScreen.storyboard */,
@@ -128,6 +131,14 @@
 				0F95B564204AEAF100E42648 /* Room.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		0FB7B9FB204ED880007CE27C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0FB7B9FC204ED8AA007CE27C /* LineView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,6 +221,7 @@
 				0F95B533204833FA00E42648 /* HTTPClient.swift in Sources */,
 				0FB7B9F8204D697A007CE27C /* Utils.swift in Sources */,
 				0F95B565204AEAF100E42648 /* Room.swift in Sources */,
+				0FB7B9FD204ED8AA007CE27C /* LineView.swift in Sources */,
 				0F95B55B2048546100E42648 /* MapViewController.swift in Sources */,
 				0F95B5352048344000E42648 /* Extensions.swift in Sources */,
 				0F95B561204AC65400E42648 /* Location.swift in Sources */,

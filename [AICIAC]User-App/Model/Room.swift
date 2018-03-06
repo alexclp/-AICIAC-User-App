@@ -9,10 +9,12 @@
 import UIKit
 
 class Room: NSObject {
+	var id: Int
 	var name: String
 	var floorNumber: Int
 	
-	init(name: String, floorNumber: Int) {
+	init(id: Int = 0, name: String = "", floorNumber: Int = 0) {
+		self.id = id
 		self.name = name
 		self.floorNumber = floorNumber
 	}

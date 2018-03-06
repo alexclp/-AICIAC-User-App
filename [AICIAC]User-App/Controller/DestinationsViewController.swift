@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol DestinationSelectedDelegate {
+	func userSelectedDestination(destination: Room)
+}
+
 class DestinationsViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
+	
+	var delegate: DestinationSelectedDelegate? = nil
 	
 	var rooms = [Room]()
 	var filteredRooms = [Room]()
@@ -86,6 +92,8 @@ extension DestinationsViewController: UITableViewDataSource {
 extension DestinationsViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
+		delegate?.userSelectedDestination(destination: rooms[indexPath.row])
+		self.navigationController?.popViewController(animated: true)
 	}
 }
 

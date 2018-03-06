@@ -17,6 +17,7 @@ class Location: NSObject {
 	var roomID: Int
 	var standardHeight: Double
 	var standardWidth: Double
+	var view: UIView? = nil
 	
 	init(x: Double = 0.0, y: Double = 0.0, lat: Double = 0.0, long: Double = 0.0, id: Int = 0, roomID: Int = 0, standardHeight: Double = 0.0, standardWidth: Double = 0.0) {
 		self.x = x
