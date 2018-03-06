@@ -24,6 +24,8 @@
 		0FB7B9F8204D697A007CE27C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB7B9F7204D697A007CE27C /* Utils.swift */; };
 		0FB7B9FA204D81E5007CE27C /* DestinationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB7B9F9204D81E5007CE27C /* DestinationsViewController.swift */; };
 		0FB7B9FD204ED8AA007CE27C /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB7B9FC204ED8AA007CE27C /* LineView.swift */; };
+		0FB7BA00204EE49E007CE27C /* bh_6th.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB7B9FE204EE49E007CE27C /* bh_6th.png */; };
+		0FB7BA01204EE49E007CE27C /* bh_5th.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB7B9FF204EE49E007CE27C /* bh_5th.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		0FB7B9F7204D697A007CE27C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		0FB7B9F9204D81E5007CE27C /* DestinationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationsViewController.swift; sourceTree = "<group>"; };
 		0FB7B9FC204ED8AA007CE27C /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
+		0FB7B9FE204EE49E007CE27C /* bh_6th.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bh_6th.png; sourceTree = "<group>"; };
+		0FB7B9FF204EE49E007CE27C /* bh_5th.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bh_5th.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				0F34AEDD202B458C00559EDB /* bh_7th.png */,
+				0FB7B9FF204EE49E007CE27C /* bh_5th.png */,
+				0FB7B9FE204EE49E007CE27C /* bh_6th.png */,
 			);
 			path = "Floor plans";
 			sourceTree = "<group>";
@@ -199,6 +205,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FB7BA00204EE49E007CE27C /* bh_6th.png in Resources */,
+				0FB7BA01204EE49E007CE27C /* bh_5th.png in Resources */,
 				0F34AED5202B338500559EDB /* LaunchScreen.storyboard in Resources */,
 				0F34AEDE202B458C00559EDB /* bh_7th.png in Resources */,
 				0F34AED2202B338500559EDB /* Assets.xcassets in Resources */,

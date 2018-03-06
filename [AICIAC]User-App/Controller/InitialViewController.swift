@@ -14,6 +14,9 @@ class InitialViewController: UIViewController {
 
 	let altimeter = CMAltimeter()
 	var imageName = ""
+	let values7th = (98.44, 98.46)
+	let values6th = (98.47, 98.49)
+	let values5th = (98.50, 98.53)
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -24,8 +27,14 @@ class InitialViewController: UIViewController {
 	func startGettingAirPressure() {
 		altimeter.startRelativeAltitudeUpdates(to: OperationQueue.main) { (data, error) in
 			if let data = data {
-//				let airPressure = data.pressure.doubleValue
-				self.imageName = "bh_7th.png"
+				let airPressure = data.pressure.doubleValue
+				if airPressure < self.values7th.1 {
+					self.imageName = "bh_7th.png"
+				} else if airPressure > self.values6th.0 && airPressure < self.values6th.1 {
+					self.imageName = "bh_6th.png"
+				} else {
+					self.imageName = "bh_5h.png"
+				}
 				self.performSegue(withIdentifier: "showMapSegue", sender: self)
 				self.stopGettingAirPressure()
 			} else {
