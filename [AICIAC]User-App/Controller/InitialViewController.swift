@@ -28,13 +28,13 @@ class InitialViewController: UIViewController {
 		altimeter.startRelativeAltitudeUpdates(to: OperationQueue.main) { (data, error) in
 			if let data = data {
 				let airPressure = data.pressure.doubleValue
-				if airPressure < self.values7th.1 {
+//				if airPressure < self.values7th.1 {
 					self.imageName = "bh_7th.png"
-				} else if airPressure > self.values6th.0 && airPressure < self.values6th.1 {
-					self.imageName = "bh_6th.png"
-				} else {
-					self.imageName = "bh_5h.png"
-				}
+//				} else if airPressure > self.values6th.0 && airPressure < self.values6th.1 {
+//					self.imageName = "bh_6th.png"
+//				} else {
+//					self.imageName = "bh_5h.png"
+//				}
 				self.performSegue(withIdentifier: "showMapSegue", sender: self)
 				self.stopGettingAirPressure()
 			} else {
