@@ -53,15 +53,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jjZ-TR-gOZ">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                             </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0xR-5s-bBl">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem enabled="NO" image="menu.png" id="Kmh-yd-aig"/>
+                                </items>
+                            </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ETA: N/A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWi-Gb-6Te">
+                                <rect key="frame" x="75" y="635" width="226" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="jjZ-TR-gOZ" firstAttribute="top" secondItem="CDW-iJ-l4e" secondAttribute="top" id="EDH-Rk-E56"/>
-                            <constraint firstItem="jjZ-TR-gOZ" firstAttribute="leading" secondItem="VeH-xI-AqZ" secondAttribute="leading" id="Kuf-TF-XAw"/>
-                            <constraint firstItem="jjZ-TR-gOZ" firstAttribute="bottom" secondItem="CDW-iJ-l4e" secondAttribute="bottom" id="dCr-QZ-Ia2"/>
-                            <constraint firstAttribute="trailing" secondItem="jjZ-TR-gOZ" secondAttribute="trailing" id="iuM-z8-u2H"/>
+                            <constraint firstAttribute="trailing" secondItem="jjZ-TR-gOZ" secondAttribute="trailing" id="5eZ-HF-CfM"/>
+                            <constraint firstItem="jjZ-TR-gOZ" firstAttribute="top" secondItem="CDW-iJ-l4e" secondAttribute="top" id="CZp-Cx-HXf"/>
+                            <constraint firstItem="0xR-5s-bBl" firstAttribute="centerX" secondItem="aWi-Gb-6Te" secondAttribute="centerX" id="G0H-Xh-ilh"/>
+                            <constraint firstItem="jjZ-TR-gOZ" firstAttribute="leading" secondItem="VeH-xI-AqZ" secondAttribute="leading" id="HIk-zQ-Czi"/>
+                            <constraint firstItem="0xR-5s-bBl" firstAttribute="bottom" secondItem="CDW-iJ-l4e" secondAttribute="bottom" id="NoI-nI-VhV"/>
+                            <constraint firstItem="0xR-5s-bBl" firstAttribute="centerY" secondItem="aWi-Gb-6Te" secondAttribute="centerY" id="QRc-oM-pVk"/>
+                            <constraint firstItem="jjZ-TR-gOZ" firstAttribute="leading" secondItem="0xR-5s-bBl" secondAttribute="leading" id="YbV-o4-Bs8"/>
+                            <constraint firstItem="0xR-5s-bBl" firstAttribute="top" secondItem="jjZ-TR-gOZ" secondAttribute="bottom" id="npg-wP-KFT"/>
+                            <constraint firstItem="jjZ-TR-gOZ" firstAttribute="trailing" secondItem="0xR-5s-bBl" secondAttribute="trailing" id="t0x-kn-rBD"/>
+                            <constraint firstItem="aWi-Gb-6Te" firstAttribute="leading" secondItem="CDW-iJ-l4e" secondAttribute="leading" constant="75" id="wzO-ev-Gvz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CDW-iJ-l4e"/>
                     </view>
@@ -133,4 +151,7 @@
             <point key="canvasLocation" x="3560.8000000000002" y="23.838080959520241"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="menu.png" width="32" height="32"/>
+    </resources>
 </document>
