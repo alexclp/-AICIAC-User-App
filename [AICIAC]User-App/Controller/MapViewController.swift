@@ -60,10 +60,10 @@ class MapViewController: UIViewController {
 				guard let id = data["id"] as? Int else { print("Failed to get id"); return }
 				
 				DispatchQueue.main.async {
-					guard let interpolatedPoint = Utils.interpolatePointToCurrentSize(point: CGPoint(x: x, y: y), from: CGSize(width: standardWidth, height: standardHeight), in: self.view) else { return }
+					guard let interpolatedPoint = Utils.interpolatePointToCurrentSize(point: CGPoint(x: x, y: y), from: CGSize(width: standardWidth, height: standardHeight), in: self.mapImageView) else { return }
 					let view = UIView(frame: CGRect(x: interpolatedPoint.x, y: interpolatedPoint.y, width: 10.0, height: 10.0))
 					view.backgroundColor = UIColor.blue
-					self.view.addSubview(view)
+					self.mapImageView.addSubview(view)
 					self.currentLocation = Location.init(x: x, y: y, lat: lat, long: long, id: id, roomID: roomID, standardHeight: standardHeight, standardWidth: standardWidth)
 					self.currentLocation.view = view
 				}
@@ -83,10 +83,10 @@ class MapViewController: UIViewController {
 							NavigationHelper.shared.getLocation(with: element, completion: { (response, location) in
 								if response == true {
 									DispatchQueue.main.async {
-										guard let interpolatedPoint = Utils.interpolatePointToCurrentSize(point: CGPoint(x: location!.x, y: location!.y), from: CGSize(width: location!.standardWidth, height: location!.standardHeight), in: self.view) else { return }
+										guard let interpolatedPoint = Utils.interpolatePointToCurrentSize(point: CGPoint(x: location!.x, y: location!.y), from: CGSize(width: location!.standardWidth, height: location!.standardHeight), in: self.mapImageView) else { return }
 										let view = UIView(frame: CGRect(x: interpolatedPoint.x, y: interpolatedPoint.y, width: 10.0, height: 10.0))
 										view.backgroundColor = UIColor.red
-										self.view.addSubview(view)
+										self.mapImageView.addSubview(view)
 										self.path.append(location!)
 									}
 								}
@@ -108,14 +108,14 @@ class MapViewController: UIViewController {
 	func drawPath() {
 		var first = path[0]
 		for index in 1..<path.count {
-			if let point1 = Utils.interpolatePointToCurrentSize(point: CGPoint(x: first.x, y: first.y), from: CGSize(width: first.standardWidth, height: first.standardHeight), in: self.view), let point2 = Utils.interpolatePointToCurrentSize(point: CGPoint(x: path[index].x, y: path[index].y), from: CGSize(width: path[index].standardWidth, height: path[index].standardHeight), in: self.view) {
-				addLine(fromPoint: point1, toPoint: point2)
+			if let point1 = Utils.interpolatePointToCurrentSize(point: CGPoint(x: first.x, y: first.y), from: CGSize(width: first.standardWidth, height: first.standardHeight), in: self.mapImageView), let point2 = Utils.interpolatePointToCurrentSize(point: CGPoint(x: path[index].x, y: path[index].y), from: CGSize(width: path[index].standardWidth, height: path[index].standardHeight), in: self.mapImageView) {
+				addLine(fromPoint: point1, toPoint: point2, in: self.mapImageView)
 			}
 			first = path[index]
 		}
 	}
 	
-	func addLine(fromPoint start: CGPoint, toPoint end:CGPoint) {
+	func addLine(fromPoint start: CGPoint, toPoint end: CGPoint, in view: UIView) {
 		let line = CAShapeLayer()
 		let linePath = UIBezierPath()
 		linePath.move(to: start)
@@ -124,7 +124,7 @@ class MapViewController: UIViewController {
 		line.strokeColor = UIColor.red.cgColor
 		line.lineWidth = 1
 		line.lineJoin = kCALineJoinRound
-		self.view.layer.addSublayer(line)
+		view.layer.addSublayer(line)
 	}
 	
 	func drawPositionCircleView(in rect: CGRect) -> UIView {

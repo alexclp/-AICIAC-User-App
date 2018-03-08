@@ -17,7 +17,7 @@ class NavigationHelper: NSObject {
 		requestScan { (success) in
 			if success == true {
 				print("REQUEST SCAN --- SUCCESS")
-				sleep(12)
+				sleep(15)
 				print("WOKE UP --- SUCCESS")
 				self.getMeasurements(completion: { (response, json) in
 					if response == true {
