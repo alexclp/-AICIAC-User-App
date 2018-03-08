@@ -23,7 +23,6 @@ class NavigationHelper: NSObject {
 					if response == true {
 						print("WILL TRY TO DETERMINE POSITION --- SUCCESS @ get measurements")
 						let urlString = "https://nav-backend.herokuapp.com/determinePosition"
-//						let urlString = "http://10.40.229.157:8080/determinePosition"
 						guard let json = json else { return }
 						let params = ["measurements": json]
 						HTTPClient.shared.request(urlString: urlString, method: "POST", parameters: params, completion: { (response, data) in
