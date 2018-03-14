@@ -87,6 +87,7 @@
                     <connections>
                         <outlet property="mapImageView" destination="jjZ-TR-gOZ" id="BNg-Js-zKq"/>
                         <segue destination="dNr-Rz-wUR" kind="show" identifier="showDestinationsSegue" id="3Sd-SX-wgL"/>
+                        <segue destination="bKn-Ob-rNw" kind="show" identifier="showARSegue" id="fJ6-Tx-bfS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hNg-Zx-hUx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -148,7 +149,74 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="3560.8000000000002" y="23.838080959520241"/>
+            <point key="canvasLocation" x="3548" y="-717"/>
+        </scene>
+        <!--Augmented Reality View Controller-->
+        <scene sceneID="owz-Se-X9W">
+            <objects>
+                <viewController id="bKn-Ob-rNw" customClass="AugmentedRealityViewController" customModule="_AICIAC_User_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7db-Cj-yE4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" sceneName="CameraSetup.scn" wantsMultisampling="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sfV-eS-b9t">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <connections>
+                                    <outlet property="delegate" destination="bKn-Ob-rNw" id="GzY-wL-wwD"/>
+                                </connections>
+                            </arscnView>
+                            <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8NH-Ym-MUa">
+                                <rect key="frame" x="15" y="596" width="191" height="38"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="yrZ-dO-mn7">
+                                    <rect key="frame" x="0.0" y="0.0" width="191" height="38"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Initializing AR session." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONp-4V-yvP">
+                                            <rect key="frame" x="8" y="8" width="169" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="RCN-Bi-Lup"/>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="cOk-y1-fI4"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="ONp-4V-yvP" secondAttribute="bottom" constant="8" id="5Ml-fg-39Y"/>
+                                        <constraint firstAttribute="trailing" secondItem="ONp-4V-yvP" secondAttribute="trailing" constant="14" id="aDg-4r-tws"/>
+                                        <constraint firstItem="ONp-4V-yvP" firstAttribute="top" secondItem="yrZ-dO-mn7" secondAttribute="top" constant="8" id="m46-Yd-Ssb"/>
+                                        <constraint firstItem="ONp-4V-yvP" firstAttribute="leading" secondItem="yrZ-dO-mn7" secondAttribute="leading" constant="8" id="s0T-PO-C9v"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="light"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="sfV-eS-b9t" secondAttribute="bottom" id="FKD-TH-f6q"/>
+                            <constraint firstAttribute="top" secondItem="sfV-eS-b9t" secondAttribute="top" id="LwJ-RI-Q3h"/>
+                            <constraint firstItem="fZS-rw-vyf" firstAttribute="bottom" secondItem="8NH-Ym-MUa" secondAttribute="bottom" constant="33" id="gPb-iE-Plz"/>
+                            <constraint firstItem="8NH-Ym-MUa" firstAttribute="leading" secondItem="fZS-rw-vyf" secondAttribute="leading" constant="15" id="kaO-jx-KfA"/>
+                            <constraint firstItem="sfV-eS-b9t" firstAttribute="leading" secondItem="fZS-rw-vyf" secondAttribute="leading" id="rtF-tV-5Q8"/>
+                            <constraint firstItem="fZS-rw-vyf" firstAttribute="trailing" secondItem="sfV-eS-b9t" secondAttribute="trailing" id="s5W-u3-eZG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fZS-rw-vyf"/>
+                    </view>
+                    <connections>
+                        <outlet property="sceneView" destination="sfV-eS-b9t" id="W2C-v0-m4U"/>
+                        <outlet property="sessionInfoLabel" destination="ONp-4V-yvP" id="kFc-dh-76L"/>
+                        <outlet property="sessionInfoView" destination="8NH-Ym-MUa" id="gG1-lD-Tdk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7HK-sW-bUX" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3548" y="953"/>
         </scene>
     </scenes>
     <resources>

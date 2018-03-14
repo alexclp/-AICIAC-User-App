@@ -169,7 +169,7 @@ class MapViewController: UIViewController {
 	}
 	
 	@objc func cameraButtonPressed(sender: UIBarButtonItem) {
-		
+		performSegue(withIdentifier: "showARSegue", sender: self)
 	}
 }
 

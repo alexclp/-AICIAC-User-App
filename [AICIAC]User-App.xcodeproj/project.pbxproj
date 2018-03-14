@@ -16,6 +16,10 @@
 		0F38D7222051899B00C6921E /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F38D71F2051899A00C6921E /* menu@2x.png */; };
 		0F38D7232051899B00C6921E /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F38D7202051899B00C6921E /* menu.png */; };
 		0F38D7242051899B00C6921E /* menu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F38D7212051899B00C6921E /* menu@3x.png */; };
+		0F92C4BC20597BBA00D9B50A /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F92C4BB20597BBA00D9B50A /* ARKit.framework */; };
+		0F92C4BE20597BEB00D9B50A /* AugmentedRealityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F92C4BD20597BEB00D9B50A /* AugmentedRealityViewController.swift */; };
+		0F92C4C0205985E200D9B50A /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F92C4BF205985E200D9B50A /* art.scnassets */; };
+		0F92C4C2205985F200D9B50A /* Assets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F92C4C1205985F200D9B50A /* Assets.scnassets */; };
 		0F95B533204833FA00E42648 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95B532204833FA00E42648 /* HTTPClient.swift */; };
 		0F95B5352048344000E42648 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95B5342048344000E42648 /* Extensions.swift */; };
 		0F95B559204853A500E42648 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F95B558204853A500E42648 /* CoreMotion.framework */; };
@@ -28,6 +32,7 @@
 		0FB7B9FA204D81E5007CE27C /* DestinationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB7B9F9204D81E5007CE27C /* DestinationsViewController.swift */; };
 		0FB7BA00204EE49E007CE27C /* bh_6th.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB7B9FE204EE49E007CE27C /* bh_6th.png */; };
 		0FB7BA01204EE49E007CE27C /* bh_5th.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB7B9FF204EE49E007CE27C /* bh_5th.png */; };
+		0FD8A07E20598C9E00814B59 /* timetable.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD8A07D20598C9E00814B59 /* timetable.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +47,10 @@
 		0F38D71F2051899A00C6921E /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@2x.png"; sourceTree = "<group>"; };
 		0F38D7202051899B00C6921E /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		0F38D7212051899B00C6921E /* menu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@3x.png"; sourceTree = "<group>"; };
+		0F92C4BB20597BBA00D9B50A /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
+		0F92C4BD20597BEB00D9B50A /* AugmentedRealityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AugmentedRealityViewController.swift; sourceTree = "<group>"; };
+		0F92C4BF205985E200D9B50A /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		0F92C4C1205985F200D9B50A /* Assets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Assets.scnassets; sourceTree = "<group>"; };
 		0F95B532204833FA00E42648 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		0F95B5342048344000E42648 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0F95B558204853A500E42648 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -54,6 +63,7 @@
 		0FB7B9F9204D81E5007CE27C /* DestinationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationsViewController.swift; sourceTree = "<group>"; };
 		0FB7B9FE204EE49E007CE27C /* bh_6th.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bh_6th.png; sourceTree = "<group>"; };
 		0FB7B9FF204EE49E007CE27C /* bh_5th.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bh_5th.png; sourceTree = "<group>"; };
+		0FD8A07D20598C9E00814B59 /* timetable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timetable.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F92C4BC20597BBA00D9B50A /* ARKit.framework in Frameworks */,
 				0F95B559204853A500E42648 /* CoreMotion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,6 +106,8 @@
 				0F95B55E204AC61E00E42648 /* Controller */,
 				0F34AECE202B338200559EDB /* Main.storyboard */,
 				0F34AED1202B338500559EDB /* Assets.xcassets */,
+				0F92C4C1205985F200D9B50A /* Assets.scnassets */,
+				0F92C4BF205985E200D9B50A /* art.scnassets */,
 				0F34AED3202B338500559EDB /* LaunchScreen.storyboard */,
 				0F34AED6202B338500559EDB /* Info.plist */,
 			);
@@ -114,6 +127,7 @@
 		0F38D71D2051897500C6921E /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				0FD8A07D20598C9E00814B59 /* timetable.png */,
 				0F38D71E2051897D00C6921E /* Icons */,
 				0F34AEDC202B458300559EDB /* Floor plans */,
 			);
@@ -133,6 +147,7 @@
 		0F95B557204853A500E42648 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0F92C4BB20597BBA00D9B50A /* ARKit.framework */,
 				0F95B558204853A500E42648 /* CoreMotion.framework */,
 			);
 			name = Frameworks;
@@ -144,6 +159,7 @@
 				0F34AECC202B338200559EDB /* InitialViewController.swift */,
 				0F95B55A2048546100E42648 /* MapViewController.swift */,
 				0FB7B9F9204D81E5007CE27C /* DestinationsViewController.swift */,
+				0F92C4BD20597BEB00D9B50A /* AugmentedRealityViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -225,9 +241,12 @@
 				0FB7BA01204EE49E007CE27C /* bh_5th.png in Resources */,
 				0F34AED5202B338500559EDB /* LaunchScreen.storyboard in Resources */,
 				0F34AEDE202B458C00559EDB /* bh_7th.png in Resources */,
+				0F92C4C2205985F200D9B50A /* Assets.scnassets in Resources */,
 				0F34AED2202B338500559EDB /* Assets.xcassets in Resources */,
+				0F92C4C0205985E200D9B50A /* art.scnassets in Resources */,
 				0F38D7242051899B00C6921E /* menu@3x.png in Resources */,
 				0F34AED0202B338200559EDB /* Main.storyboard in Resources */,
+				0FD8A07E20598C9E00814B59 /* timetable.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +267,7 @@
 				0F95B565204AEAF100E42648 /* Room.swift in Sources */,
 				0F95B55B2048546100E42648 /* MapViewController.swift in Sources */,
 				0F95B5352048344000E42648 /* Extensions.swift in Sources */,
+				0F92C4BE20597BEB00D9B50A /* AugmentedRealityViewController.swift in Sources */,
 				0F95B561204AC65400E42648 /* Location.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
