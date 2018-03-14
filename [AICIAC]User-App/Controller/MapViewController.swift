@@ -76,7 +76,6 @@ class MapViewController: UIViewController {
 			if success == true {
 				NavigationHelper.shared.getRoute(from: self.currentLocation, to: location!, completion: { (success, path) in
 					if success == true {
-						self.path.append(self.currentLocation)
 						let group = DispatchGroup()
 						for element in path! {
 							group.enter()
@@ -107,12 +106,29 @@ class MapViewController: UIViewController {
 	
 	func drawPath() {
 		var first = path[0]
+		print(first)
 		for index in 1..<path.count {
+			print(path[index])
 			if let point1 = Utils.interpolatePointToCurrentSize(point: CGPoint(x: first.x, y: first.y), from: CGSize(width: first.standardWidth, height: first.standardHeight), in: self.mapImageView), let point2 = Utils.interpolatePointToCurrentSize(point: CGPoint(x: path[index].x, y: path[index].y), from: CGSize(width: path[index].standardWidth, height: path[index].standardHeight), in: self.mapImageView) {
 				addLine(fromPoint: point1, toPoint: point2, in: self.mapImageView)
 			}
 			first = path[index]
 		}
+	}
+	
+	func generateDirections() -> [String] {
+		var instructions = [String]()
+		var prev = path[0]
+		for index in 1..<path.count {
+			let current = path[index]
+			
+			if current.roomID != prev.roomID {
+				instructions.append("Exit the room.")
+			}
+			
+			prev = current
+		}
+		return instructions
 	}
 	
 	func addLine(fromPoint start: CGPoint, toPoint end: CGPoint, in view: UIView) {

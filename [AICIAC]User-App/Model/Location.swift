@@ -19,6 +19,10 @@ class Location: NSObject {
 	var standardWidth: Double
 	var view: UIView? = nil
 	
+	public override var description: String {
+		return "Location: {x = \(x), y = \(y), lat = \(lat), long = \(long)"
+	}
+	
 	init(x: Double = 0.0, y: Double = 0.0, lat: Double = 0.0, long: Double = 0.0, id: Int = 0, roomID: Int = 0, standardHeight: Double = 0.0, standardWidth: Double = 0.0) {
 		self.x = x
 		self.y = y
