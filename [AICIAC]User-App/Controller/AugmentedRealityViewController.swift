@@ -8,6 +8,7 @@
 
 import UIKit
 import ARKit
+import CoreLocation
 
 class AugmentedRealityViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
 
@@ -16,6 +17,14 @@ class AugmentedRealityViewController: UIViewController, ARSCNViewDelegate, ARSes
 	@IBOutlet weak var sessionInfoView: UIView!
 	@IBOutlet weak var sessionInfoLabel: UILabel!
 	@IBOutlet weak var sceneView: ARSCNView!
+	
+	var destination = Location()
+	var currentPosition = Location()
+	
+	let locationManager = CLLocationManager()
+	
+	var arrowNode: SCNNode? = nil
+	var angle: Double = -1
 	
 	// MARK: - View Life Cycle
 	
@@ -42,26 +51,52 @@ class AugmentedRealityViewController: UIViewController, ARSCNViewDelegate, ARSes
 		let configuration = ARWorldTrackingConfiguration()
 		configuration.planeDetection = .horizontal
 		sceneView.session.run(configuration)
+//
+//		// Set a delegate to track the number of plane anchors for providing UI feedback.
+//		sceneView.session.delegate = self
+//
+//		/*
+//		Prevent the screen from being dimmed after a while as users will likely
+//		have long periods of interaction without touching the screen or buttons.
+//		*/
+//		UIApplication.shared.isIdleTimerDisabled = true
+//
+//		// Show debug UI to view performance metrics (e.g. frames per second).
+//		sceneView.showsStatistics = true
 		
-		// Set a delegate to track the number of plane anchors for providing UI feedback.
-		sceneView.session.delegate = self
-		
-		/*
-		Prevent the screen from being dimmed after a while as users will likely
-		have long periods of interaction without touching the screen or buttons.
-		*/
-		UIApplication.shared.isIdleTimerDisabled = true
-		
-		// Show debug UI to view performance metrics (e.g. frames per second).
-		sceneView.showsStatistics = true
-		
-		setupVerticalPane()
+//		setupVerticalPane()
+	}
+	
+//	func showArrow() {
+//		if let arrowScene = SCNScene(named: "art.scnassets/arrow.scn") {
+//			if let node = arrowScene.rootNode.childNode(withName: "arrow", recursively: true) {
+//				arrowNode = node
+//				arrowNode?.position = SCNVector3(x: 0, y: 0, z: -0.5)
+//				sceneView.scene.rootNode.addChildNode(node)
+//				sceneView.scene = arrowScene
+//			}
+//		}
+//	}
+//
+//	func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+//		guard let camera = sceneView.pointOfView else { return }
+//		let position = SCNVector3(x: 0, y: 0, z: -0.5)
+//		arrowNode?.position = camera.convertPosition(position, to: nil)
+//	}
+	
+	func setupOverheadArrow() {
+		let scene = SCNScene(named: "art.scnassets/arrow.scn")!
+		let node = scene.rootNode.childNode(withName: "arrow", recursively: true)!
+		node.position = SCNVector3Make(0, 0, -0.5)
+		scene.rootNode.addChildNode(node)
+		sceneView.scene = scene
 	}
 	
 	func setupVerticalPane() {
 		let scene = SCNScene.init()
-		let boxGeometry = SCNBox(width: 0.5, height: 0.3, length: 0.1, chamferRadius: 0.0)
-		let boxNode = SCNNode(geometry: boxGeometry)
+//		let boxGeometry = SCNBox(width: 0.5, height: 0.3, length: 0.1, chamferRadius: 0.1)
+		let plane = SCNPlane(width: 0.5, height: 0.3)
+		let boxNode = SCNNode(geometry: plane)
 		
 		if let image = UIImage(named: "timetable.png") {
 			print("Setting image")
@@ -70,7 +105,7 @@ class AugmentedRealityViewController: UIViewController, ARSCNViewDelegate, ARSes
 			boxNode.geometry?.materials = [material]
 		}
 		
-		boxNode.position = SCNVector3Make(0, 0, -0.5)
+		boxNode.position = SCNVector3Make(0, 5.0, 3.0)
 		scene.rootNode.addChildNode(boxNode)
 		sceneView.scene = scene
 	}
@@ -84,7 +119,13 @@ class AugmentedRealityViewController: UIViewController, ARSCNViewDelegate, ARSes
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		setupOverheadArrow()
 		
+		if CLLocationManager.headingAvailable() {
+			locationManager.headingFilter = 1
+			locationManager.startUpdatingHeading()
+			locationManager.delegate = self
+		}
 	}
 	
 	// MARK: - ARSCNViewDelegate
@@ -212,4 +253,13 @@ class AugmentedRealityViewController: UIViewController, ARSCNViewDelegate, ARSes
 		sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
 	}
 
+}
+
+extension AugmentedRealityViewController: CLLocationManagerDelegate {
+	func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+		if angle == -1 {
+			angle = newHeading.magneticHeading
+			arrowNode?.rotation = SCNVector4(0, 1, 0, (angle / 180) * Double.pi)
+		}
+	}
 }
