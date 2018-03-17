@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F1504EE205D4D9500884984 /* ARDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1504ED205D4D9500884984 /* ARDataHelper.swift */; };
+		0F1504FA205D519C00884984 /* SceneLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1504F0205D519C00884984 /* SceneLocationView.swift */; };
+		0F1504FB205D519C00884984 /* SCNVector3+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1504F1205D519C00884984 /* SCNVector3+Extensions.swift */; };
+		0F1504FC205D519C00884984 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1504F2205D519C00884984 /* LocationManager.swift */; };
+		0F1504FD205D519C00884984 /* LocationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1504F3205D519C00884984 /* LocationNode.swift */; };
+		0F1504FE205D519C00884984 /* FloatingPoint+Radians.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1504F4205D519C00884984 /* FloatingPoint+Radians.swift */; };
+		0F1504FF205D519C00884984 /* SCNNode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1504F5205D519C00884984 /* SCNNode+Extensions.swift */; };
+		0F150500205D519C00884984 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1504F6205D519C00884984 /* CGPoint+Extensions.swift */; };
+		0F150501205D519C00884984 /* CLLocation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1504F7205D519C00884984 /* CLLocation+Extensions.swift */; };
+		0F150502205D519C00884984 /* SceneLocationEstimate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1504F8205D519C00884984 /* SceneLocationEstimate.swift */; };
+		0F150503205D519C00884984 /* SceneLocationEstimate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1504F9205D519C00884984 /* SceneLocationEstimate+Extensions.swift */; };
+		0F150507205D5D3700884984 /* pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F150504205D5D3700884984 /* pin@2x.png */; };
+		0F150508205D5D3700884984 /* pin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F150505205D5D3700884984 /* pin@3x.png */; };
+		0F150509205D5D3700884984 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F150506205D5D3700884984 /* pin.png */; };
 		0F34AECB202B338200559EDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F34AECA202B338200559EDB /* AppDelegate.swift */; };
 		0F34AECD202B338200559EDB /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F34AECC202B338200559EDB /* InitialViewController.swift */; };
 		0F34AED0202B338200559EDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F34AECE202B338200559EDB /* Main.storyboard */; };
@@ -36,6 +50,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F1504ED205D4D9500884984 /* ARDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARDataHelper.swift; sourceTree = "<group>"; };
+		0F1504F0205D519C00884984 /* SceneLocationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneLocationView.swift; sourceTree = "<group>"; };
+		0F1504F1205D519C00884984 /* SCNVector3+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCNVector3+Extensions.swift"; sourceTree = "<group>"; };
+		0F1504F2205D519C00884984 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		0F1504F3205D519C00884984 /* LocationNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationNode.swift; sourceTree = "<group>"; };
+		0F1504F4205D519C00884984 /* FloatingPoint+Radians.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FloatingPoint+Radians.swift"; sourceTree = "<group>"; };
+		0F1504F5205D519C00884984 /* SCNNode+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCNNode+Extensions.swift"; sourceTree = "<group>"; };
+		0F1504F6205D519C00884984 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
+		0F1504F7205D519C00884984 /* CLLocation+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extensions.swift"; sourceTree = "<group>"; };
+		0F1504F8205D519C00884984 /* SceneLocationEstimate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneLocationEstimate.swift; sourceTree = "<group>"; };
+		0F1504F9205D519C00884984 /* SceneLocationEstimate+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SceneLocationEstimate+Extensions.swift"; sourceTree = "<group>"; };
+		0F150504205D5D3700884984 /* pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin@2x.png"; sourceTree = "<group>"; };
+		0F150505205D5D3700884984 /* pin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin@3x.png"; sourceTree = "<group>"; };
+		0F150506205D5D3700884984 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
 		0F34AEC7202B338200559EDB /* [AICIAC]User-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "[AICIAC]User-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F34AECA202B338200559EDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F34AECC202B338200559EDB /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +107,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F1504EC205D493900884984 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				0F1504EF205D510900884984 /* ARKit-CoreLocation */,
+			);
+			path = External;
+			sourceTree = "<group>";
+		};
+		0F1504EF205D510900884984 /* ARKit-CoreLocation */ = {
+			isa = PBXGroup;
+			children = (
+				0F1504F6205D519C00884984 /* CGPoint+Extensions.swift */,
+				0F1504F7205D519C00884984 /* CLLocation+Extensions.swift */,
+				0F1504F4205D519C00884984 /* FloatingPoint+Radians.swift */,
+				0F1504F2205D519C00884984 /* LocationManager.swift */,
+				0F1504F3205D519C00884984 /* LocationNode.swift */,
+				0F1504F8205D519C00884984 /* SceneLocationEstimate.swift */,
+				0F1504F9205D519C00884984 /* SceneLocationEstimate+Extensions.swift */,
+				0F1504F0205D519C00884984 /* SceneLocationView.swift */,
+				0F1504F5205D519C00884984 /* SCNNode+Extensions.swift */,
+				0F1504F1205D519C00884984 /* SCNVector3+Extensions.swift */,
+			);
+			path = "ARKit-CoreLocation";
+			sourceTree = "<group>";
+		};
 		0F34AEBE202B338200559EDB = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +152,7 @@
 		0F34AEC9202B338200559EDB /* [AICIAC]User-App */ = {
 			isa = PBXGroup;
 			children = (
+				0F1504EC205D493900884984 /* External */,
 				0F38D71D2051897500C6921E /* Assets */,
 				0F34AECA202B338200559EDB /* AppDelegate.swift */,
 				0F95B5342048344000E42648 /* Extensions.swift */,
@@ -127,6 +181,9 @@
 		0F38D71D2051897500C6921E /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				0F150506205D5D3700884984 /* pin.png */,
+				0F150504205D5D3700884984 /* pin@2x.png */,
+				0F150505205D5D3700884984 /* pin@3x.png */,
 				0FD8A07D20598C9E00814B59 /* timetable.png */,
 				0F38D71E2051897D00C6921E /* Icons */,
 				0F34AEDC202B458300559EDB /* Floor plans */,
@@ -170,6 +227,7 @@
 				0F95B532204833FA00E42648 /* HTTPClient.swift */,
 				0FB7B9F7204D697A007CE27C /* Utils.swift */,
 				0F95B55C2049A53300E42648 /* NavigationHelper.swift */,
+				0F1504ED205D4D9500884984 /* ARDataHelper.swift */,
 				0F95B562204AEA6500E42648 /* SearchHelper.swift */,
 				0F95B560204AC65400E42648 /* Location.swift */,
 				0F95B564204AEAF100E42648 /* Room.swift */,
@@ -238,15 +296,18 @@
 				0F38D7232051899B00C6921E /* menu.png in Resources */,
 				0FB7BA00204EE49E007CE27C /* bh_6th.png in Resources */,
 				0F38D7222051899B00C6921E /* menu@2x.png in Resources */,
+				0F150509205D5D3700884984 /* pin.png in Resources */,
 				0FB7BA01204EE49E007CE27C /* bh_5th.png in Resources */,
 				0F34AED5202B338500559EDB /* LaunchScreen.storyboard in Resources */,
 				0F34AEDE202B458C00559EDB /* bh_7th.png in Resources */,
 				0F92C4C2205985F200D9B50A /* Assets.scnassets in Resources */,
 				0F34AED2202B338500559EDB /* Assets.xcassets in Resources */,
 				0F92C4C0205985E200D9B50A /* art.scnassets in Resources */,
+				0F150508205D5D3700884984 /* pin@3x.png in Resources */,
 				0F38D7242051899B00C6921E /* menu@3x.png in Resources */,
 				0F34AED0202B338200559EDB /* Main.storyboard in Resources */,
 				0FD8A07E20598C9E00814B59 /* timetable.png in Resources */,
+				0F150507205D5D3700884984 /* pin@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,16 +320,27 @@
 			files = (
 				0F34AECD202B338200559EDB /* InitialViewController.swift in Sources */,
 				0FB7B9FA204D81E5007CE27C /* DestinationsViewController.swift in Sources */,
+				0F1504FA205D519C00884984 /* SceneLocationView.swift in Sources */,
+				0F1504FD205D519C00884984 /* LocationNode.swift in Sources */,
 				0F95B55D2049A53300E42648 /* NavigationHelper.swift in Sources */,
+				0F1504FC205D519C00884984 /* LocationManager.swift in Sources */,
+				0F150500205D519C00884984 /* CGPoint+Extensions.swift in Sources */,
+				0F1504FB205D519C00884984 /* SCNVector3+Extensions.swift in Sources */,
 				0F34AECB202B338200559EDB /* AppDelegate.swift in Sources */,
 				0F95B563204AEA6500E42648 /* SearchHelper.swift in Sources */,
+				0F150503205D519C00884984 /* SceneLocationEstimate+Extensions.swift in Sources */,
+				0F150501205D519C00884984 /* CLLocation+Extensions.swift in Sources */,
 				0F95B533204833FA00E42648 /* HTTPClient.swift in Sources */,
 				0FB7B9F8204D697A007CE27C /* Utils.swift in Sources */,
 				0F95B565204AEAF100E42648 /* Room.swift in Sources */,
 				0F95B55B2048546100E42648 /* MapViewController.swift in Sources */,
+				0F150502205D519C00884984 /* SceneLocationEstimate.swift in Sources */,
+				0F1504EE205D4D9500884984 /* ARDataHelper.swift in Sources */,
 				0F95B5352048344000E42648 /* Extensions.swift in Sources */,
 				0F92C4BE20597BEB00D9B50A /* AugmentedRealityViewController.swift in Sources */,
 				0F95B561204AC65400E42648 /* Location.swift in Sources */,
+				0F1504FE205D519C00884984 /* FloatingPoint+Radians.swift in Sources */,
+				0F1504FF205D519C00884984 /* SCNNode+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

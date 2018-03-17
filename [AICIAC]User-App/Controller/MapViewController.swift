@@ -11,7 +11,8 @@ import UIKit
 class MapViewController: UIViewController {
 	@IBOutlet weak var mapImageView: UIImageView!
 	
-	var currentLocation = Location()
+	var currentLocation: Location? = nil
+	var destinationLocation: Location? = nil
 	var imageName = ""
 	var path = [Location]()
 	
@@ -29,6 +30,12 @@ class MapViewController: UIViewController {
 		if segue.identifier == "showDestinationsSegue" {
 			let destination = segue.destination as! DestinationsViewController
 			destination.delegate = self
+		} else if segue.identifier == "showARSegue" {
+			let destination = segue.destination as! AugmentedRealityViewController
+			if let current = currentLocation, let dest = destinationLocation {
+				destination.destination = dest
+				destination.currentPosition = current
+			}
 		}
 	}
 	
@@ -65,7 +72,7 @@ class MapViewController: UIViewController {
 					view.backgroundColor = UIColor.blue
 					self.mapImageView.addSubview(view)
 					self.currentLocation = Location.init(x: x, y: y, lat: lat, long: long, id: id, roomID: roomID, standardHeight: standardHeight, standardWidth: standardWidth)
-					self.currentLocation.view = view
+					self.currentLocation?.view = view
 				}
 			}
 		}
@@ -74,7 +81,8 @@ class MapViewController: UIViewController {
 	func showRouteToDestination(destination: Room) {
 		NavigationHelper.shared.getConnectingLocation(in: destination) { (success, location) in
 			if success == true {
-				NavigationHelper.shared.getRoute(from: self.currentLocation, to: location!, completion: { (success, path) in
+				self.destinationLocation = location
+				NavigationHelper.shared.getRoute(from: self.currentLocation!, to: location!, completion: { (success, path) in
 					if success == true {
 						let group = DispatchGroup()
 						for element in path! {
