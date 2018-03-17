@@ -20,6 +20,7 @@ class AugmentedRealityViewController: UIViewController, ARSCNViewDelegate, ARSes
 	
 	var destination = Location()
 	var currentPosition = Location()
+	
 	var compassNode: SCNNode? = nil
 	var locationManager: CLLocationManager!
 	var angle: Double = -1
@@ -41,6 +42,16 @@ class AugmentedRealityViewController: UIViewController, ARSCNViewDelegate, ARSes
 		}
 		locationManager = CLLocationManager()
 		locationManager.delegate = self
+		
+		destination.lat = 51.510790
+		destination.long = -0.116974
+		
+		currentPosition.lat = 51.512549
+		currentPosition.long = -0.117021
+		
+		calculateBearing()
+//		51.512549, -0.117021
+//		51.510790, -0.116974
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -59,6 +70,13 @@ class AugmentedRealityViewController: UIViewController, ARSCNViewDelegate, ARSes
 		guard let camera = sceneView.pointOfView else { return }
 		let position = SCNVector3(x: 0, y: 0.5, z: -4)
 		compassNode?.position = camera.convertPosition(position, to: nil)
+	}
+	
+	func calculateBearing() {
+		if angle == -1 {
+			angle = Utils.shared.getBearingBetweenTwoPoints1(point1: currentPosition, point2: destination)
+			compassNode?.rotation = SCNVector4(0, 0.5, -4, (angle / 180) * Double.pi)
+		}
 	}
 }
 
@@ -83,9 +101,9 @@ extension AugmentedRealityViewController: CLLocationManagerDelegate {
 	}
 	
 	func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-		if angle == -1 {
-			angle = newHeading.magneticHeading
-			compassNode?.rotation = SCNVector4(0, 0.5, -4, (angle / 180) * Double.pi)
-		}
+//		if angle == -1 {
+//			angle = newHeading.magneticHeading
+//			compassNode?.rotation = SCNVector4(0, 0.5, -4, (angle / 180) * Double.pi)
+//		}
 	}
 }
