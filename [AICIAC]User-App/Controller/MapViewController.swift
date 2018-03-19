@@ -32,6 +32,11 @@ class MapViewController: UIViewController {
 		setupNavBarButtons()
     }
 	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		locationManager.stopUpdatingLocation()
+	}
+	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "showDestinationsSegue" {
 			let destination = segue.destination as! DestinationsViewController
