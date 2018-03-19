@@ -38,7 +38,9 @@ class IndoorLocationManager: NSObject {
 				guard let long = data["longitude"] as? Double else { print("Failed to get long"); return }
 				guard let roomID = data["roomID"] as? Int else { print("Failed to get room ID"); return }
 				guard let id = data["id"] as? Int else { print("Failed to get id"); return }
-				let location = Location.init(x: x, y: y, lat: lat, long: long, id: id, roomID: roomID, standardHeight: standardHeight, standardWidth: standardWidth)
+				guard let floorNumber = data["floorNumber"] as? Int else { print("Failed to get floor number"); return }
+				
+				let location = Location.init(x: x, y: y, lat: lat, long: long, id: id, roomID: roomID, standardHeight: standardHeight, standardWidth: standardWidth, floorNumber: floorNumber)
 				self.delegate?.locationManager(self, didUpdateLocation: location)
 			}
 		}

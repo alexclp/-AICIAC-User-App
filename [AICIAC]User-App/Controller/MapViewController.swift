@@ -23,7 +23,10 @@ class MapViewController: UIViewController {
 		showFloorPlan()
 		self.navigationItem.title = imageName
 		
-//		showCurrentLocation()
+		if let location = currentLocation {
+			placeLocation(location: location, in: mapImageView)
+		}
+		
 		locationManager.delegate = self
 		locationManager.startUpdatingLocation()
 		setupNavBarButtons()
@@ -54,6 +57,15 @@ class MapViewController: UIViewController {
 		if let image = UIImage(named: imageName) {
 			mapImageView.image = image
 		}
+	}
+	
+	func placeLocation(location: Location, in view: UIView) {
+		guard let interpolatedPoint = Utils.interpolatePointToCurrentSize(point: CGPoint(x: location.x, y: location.y), from: CGSize(width: location.standardWidth, height: location.standardHeight), in: view) else { return }
+		let locationView = UIView(frame: CGRect(x: interpolatedPoint.x, y: interpolatedPoint.y, width: 10.0, height: 10.0))
+		locationView.backgroundColor = UIColor.blue
+		view.addSubview(locationView)
+		self.currentLocation = location
+		self.currentLocation?.view = locationView
 	}
 	
 	func showRouteToDestination(destination: Room) {
@@ -155,12 +167,7 @@ extension MapViewController: IndoorLocationManagerDelegate {
 			}
 			
 			// Then show the new one
-			guard let interpolatedPoint = Utils.interpolatePointToCurrentSize(point: CGPoint(x: location.x, y: location.y), from: CGSize(width: location.standardWidth, height: location.standardHeight), in: self.mapImageView) else { return }
-			let view = UIView(frame: CGRect(x: interpolatedPoint.x, y: interpolatedPoint.y, width: 10.0, height: 10.0))
-			view.backgroundColor = UIColor.blue
-			self.mapImageView.addSubview(view)
-			self.currentLocation = location
-			self.currentLocation?.view = view
+			self.placeLocation(location: location, in: self.mapImageView)
 		}
 	}
 }

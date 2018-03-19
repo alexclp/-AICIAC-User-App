@@ -22,6 +22,7 @@
 		0F150508205D5D3700884984 /* pin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F150505205D5D3700884984 /* pin@3x.png */; };
 		0F150509205D5D3700884984 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F150506205D5D3700884984 /* pin.png */; };
 		0F1D94C8205FCA9D00E14691 /* IndoorLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1D94C7205FCA9D00E14691 /* IndoorLocationManager.swift */; };
+		0F1D94CB205FDFF400E14691 /* SwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1D94CA205FDFF400E14691 /* SwiftSpinner.swift */; };
 		0F34AECB202B338200559EDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F34AECA202B338200559EDB /* AppDelegate.swift */; };
 		0F34AECD202B338200559EDB /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F34AECC202B338200559EDB /* InitialViewController.swift */; };
 		0F34AED0202B338200559EDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F34AECE202B338200559EDB /* Main.storyboard */; };
@@ -66,6 +67,7 @@
 		0F150505205D5D3700884984 /* pin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin@3x.png"; sourceTree = "<group>"; };
 		0F150506205D5D3700884984 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
 		0F1D94C7205FCA9D00E14691 /* IndoorLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndoorLocationManager.swift; sourceTree = "<group>"; };
+		0F1D94CA205FDFF400E14691 /* SwiftSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpinner.swift; sourceTree = "<group>"; };
 		0F34AEC7202B338200559EDB /* [AICIAC]User-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "[AICIAC]User-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F34AECA202B338200559EDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F34AECC202B338200559EDB /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 		0F1504EC205D493900884984 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				0F1D94C9205FDFC900E14691 /* SwiftSpinner */,
 				0F1504EF205D510900884984 /* ARKit-CoreLocation */,
 			);
 			path = External;
@@ -132,6 +135,14 @@
 				0F1504F1205D519C00884984 /* SCNVector3+Extensions.swift */,
 			);
 			path = "ARKit-CoreLocation";
+			sourceTree = "<group>";
+		};
+		0F1D94C9205FDFC900E14691 /* SwiftSpinner */ = {
+			isa = PBXGroup;
+			children = (
+				0F1D94CA205FDFF400E14691 /* SwiftSpinner.swift */,
+			);
+			path = SwiftSpinner;
 			sourceTree = "<group>";
 		};
 		0F34AEBE202B338200559EDB = {
@@ -336,6 +347,7 @@
 				0F95B533204833FA00E42648 /* HTTPClient.swift in Sources */,
 				0FB7B9F8204D697A007CE27C /* Utils.swift in Sources */,
 				0F95B565204AEAF100E42648 /* Room.swift in Sources */,
+				0F1D94CB205FDFF400E14691 /* SwiftSpinner.swift in Sources */,
 				0F95B55B2048546100E42648 /* MapViewController.swift in Sources */,
 				0F150502205D519C00884984 /* SceneLocationEstimate.swift in Sources */,
 				0F1504EE205D4D9500884984 /* ARDataHelper.swift in Sources */,
