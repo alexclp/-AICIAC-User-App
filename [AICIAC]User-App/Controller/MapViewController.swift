@@ -28,9 +28,13 @@ class MapViewController: UIViewController {
 		}
 		
 		locationManager.delegate = self
-		locationManager.startUpdatingLocation()
 		setupNavBarButtons()
     }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		locationManager.startUpdatingLocation()
+	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillAppear(animated)
