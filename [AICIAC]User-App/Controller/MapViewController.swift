@@ -15,6 +15,7 @@ class MapViewController: UIViewController {
 	var destinationLocation: Location? = nil
 	var imageName = ""
 	var path = [Location]()
+	let locationManager = IndoorLocationManager()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +23,9 @@ class MapViewController: UIViewController {
 		showFloorPlan()
 		self.navigationItem.title = imageName
 		
-		showCurrentLocation()
+//		showCurrentLocation()
+		locationManager.delegate = self
+		locationManager.startUpdatingLocation()
 		setupNavBarButtons()
     }
 	
@@ -50,31 +53,6 @@ class MapViewController: UIViewController {
 	func showFloorPlan() {
 		if let image = UIImage(named: imageName) {
 			mapImageView.image = image
-		}
-	}
-	
-	func showCurrentLocation() {
-		NavigationHelper.shared.getCurrentPosition { (success, data) in
-			if success == true {
-				guard let data = data else { return }
-				guard let x = data["x"] as? Double else { print("Failed to get x"); return }
-				guard let y = data["y"] as? Double else { print("Faield to get y"); return }
-				guard let standardHeight = data["standardHeight"] as? Double else { print("Failed to get standard height"); return }
-				guard let standardWidth = data["standardWidth"] as? Double else { print("Failed standard width"); return }
-				guard let lat = data["latitude"] as? Double else { print("Failed to get lat"); return }
-				guard let long = data["longitude"] as? Double else { print("Failed to get long"); return }
-				guard let roomID = data["roomID"] as? Int else { print("Failed to get room ID"); return }
-				guard let id = data["id"] as? Int else { print("Failed to get id"); return }
-				
-				DispatchQueue.main.async {
-					guard let interpolatedPoint = Utils.interpolatePointToCurrentSize(point: CGPoint(x: x, y: y), from: CGSize(width: standardWidth, height: standardHeight), in: self.mapImageView) else { return }
-					let view = UIView(frame: CGRect(x: interpolatedPoint.x, y: interpolatedPoint.y, width: 10.0, height: 10.0))
-					view.backgroundColor = UIColor.blue
-					self.mapImageView.addSubview(view)
-					self.currentLocation = Location.init(x: x, y: y, lat: lat, long: long, id: id, roomID: roomID, standardHeight: standardHeight, standardWidth: standardWidth)
-					self.currentLocation?.view = view
-				}
-			}
 		}
 	}
 	
@@ -151,25 +129,6 @@ class MapViewController: UIViewController {
 		view.layer.addSublayer(line)
 	}
 	
-	func drawPositionCircleView(in rect: CGRect) -> UIView {
-		let circle = UIView(frame: rect)
-		
-		circle.center = self.view.center
-		circle.layer.cornerRadius = 50
-		circle.backgroundColor = UIColor.black
-		circle.clipsToBounds = true
-		
-		
-		let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.dark)
-		let blurView = UIVisualEffectView(effect: darkBlur)
-		
-		blurView.frame = circle.bounds
-		
-		circle.addSubview(blurView)
-		
-		return circle
-	}
-	
 	// MARK: - User interaction
 
 	@objc func destinationsButtonPressed(sender: UIBarButtonItem) {
@@ -184,5 +143,24 @@ class MapViewController: UIViewController {
 extension MapViewController: DestinationSelectedDelegate {
 	func userSelectedDestination(destination: Room) {
 		showRouteToDestination(destination: destination)
+	}
+}
+
+extension MapViewController: IndoorLocationManagerDelegate {
+	func locationManager(_ manager: IndoorLocationManager, didUpdateLocation location: Location) {
+		DispatchQueue.main.async {
+			// First remove the previous one, if there is one
+			if let location = self.currentLocation {
+				location.view?.removeFromSuperview()
+			}
+			
+			// Then show the new one
+			guard let interpolatedPoint = Utils.interpolatePointToCurrentSize(point: CGPoint(x: location.x, y: location.y), from: CGSize(width: location.standardWidth, height: location.standardHeight), in: self.mapImageView) else { return }
+			let view = UIView(frame: CGRect(x: interpolatedPoint.x, y: interpolatedPoint.y, width: 10.0, height: 10.0))
+			view.backgroundColor = UIColor.blue
+			self.mapImageView.addSubview(view)
+			self.currentLocation = location
+			self.currentLocation?.view = view
+		}
 	}
 }

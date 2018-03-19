@@ -21,6 +21,7 @@
 		0F150507205D5D3700884984 /* pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F150504205D5D3700884984 /* pin@2x.png */; };
 		0F150508205D5D3700884984 /* pin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F150505205D5D3700884984 /* pin@3x.png */; };
 		0F150509205D5D3700884984 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F150506205D5D3700884984 /* pin.png */; };
+		0F1D94C8205FCA9D00E14691 /* IndoorLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1D94C7205FCA9D00E14691 /* IndoorLocationManager.swift */; };
 		0F34AECB202B338200559EDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F34AECA202B338200559EDB /* AppDelegate.swift */; };
 		0F34AECD202B338200559EDB /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F34AECC202B338200559EDB /* InitialViewController.swift */; };
 		0F34AED0202B338200559EDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F34AECE202B338200559EDB /* Main.storyboard */; };
@@ -64,6 +65,7 @@
 		0F150504205D5D3700884984 /* pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin@2x.png"; sourceTree = "<group>"; };
 		0F150505205D5D3700884984 /* pin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin@3x.png"; sourceTree = "<group>"; };
 		0F150506205D5D3700884984 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
+		0F1D94C7205FCA9D00E14691 /* IndoorLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndoorLocationManager.swift; sourceTree = "<group>"; };
 		0F34AEC7202B338200559EDB /* [AICIAC]User-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "[AICIAC]User-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F34AECA202B338200559EDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F34AECC202B338200559EDB /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 		0F95B55F204AC62E00E42648 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0F1D94C7205FCA9D00E14691 /* IndoorLocationManager.swift */,
 				0F95B532204833FA00E42648 /* HTTPClient.swift */,
 				0FB7B9F7204D697A007CE27C /* Utils.swift */,
 				0F95B55C2049A53300E42648 /* NavigationHelper.swift */,
@@ -339,6 +342,7 @@
 				0F95B5352048344000E42648 /* Extensions.swift in Sources */,
 				0F92C4BE20597BEB00D9B50A /* AugmentedRealityViewController.swift in Sources */,
 				0F95B561204AC65400E42648 /* Location.swift in Sources */,
+				0F1D94C8205FCA9D00E14691 /* IndoorLocationManager.swift in Sources */,
 				0F1504FE205D519C00884984 /* FloatingPoint+Radians.swift in Sources */,
 				0F1504FF205D519C00884984 /* SCNNode+Extensions.swift in Sources */,
 			);

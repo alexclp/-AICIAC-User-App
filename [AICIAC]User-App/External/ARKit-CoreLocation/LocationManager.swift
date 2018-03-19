@@ -16,10 +16,11 @@ protocol LocationManagerDelegate: class {
 
 ///Handles retrieving the location and heading from CoreLocation
 ///Does not contain anything related to ARKit or advanced location
-class LocationManager: NSObject, CLLocationManagerDelegate {
+class LocationManager: NSObject {
     weak var delegate: LocationManagerDelegate?
     
-    private var locationManager: CLLocationManager?
+    private var locationManager: IndoorLocationManager?
+	private var headingManager: CLLocationManager?
     
     var currentLocation: CLLocation?
     
@@ -29,18 +30,22 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     override init() {
         super.init()
         
-        self.locationManager = CLLocationManager()
-        self.locationManager!.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-        self.locationManager!.distanceFilter = kCLDistanceFilterNone
-        self.locationManager!.headingFilter = kCLHeadingFilterNone
-        self.locationManager!.pausesLocationUpdatesAutomatically = false
+        self.locationManager = IndoorLocationManager()
         self.locationManager!.delegate = self
-        self.locationManager!.startUpdatingHeading()
-        self.locationManager!.startUpdatingLocation()
-        
-        self.locationManager!.requestWhenInUseAuthorization()
-        
-        self.currentLocation = self.locationManager!.location
+		self.locationManager?.startUpdatingLocation()
+		
+		self.headingManager = CLLocationManager()
+		
+		self.headingManager = CLLocationManager()
+		self.headingManager!.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+		self.headingManager!.distanceFilter = kCLDistanceFilterNone
+		self.headingManager!.headingFilter = kCLHeadingFilterNone
+		self.headingManager!.pausesLocationUpdatesAutomatically = false
+		self.headingManager!.delegate = self
+		self.headingManager!.startUpdatingHeading()
+		self.headingManager!.startUpdatingLocation()
+		
+		self.headingManager!.requestWhenInUseAuthorization()
     }
     
     func requestAuthorization() {
@@ -54,37 +59,38 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
             return
         }
         
-        self.locationManager?.requestWhenInUseAuthorization()
-    }
-    
-    //MARK: - CLLocationManagerDelegate
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        for location in locations {
-            self.delegate?.locationManagerDidUpdateLocation(self, location: location)
-        }
-        
-        self.currentLocation = manager.location
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        if newHeading.headingAccuracy >= 0 {
-            self.heading = newHeading.trueHeading
-        } else {
-            self.heading = newHeading.magneticHeading
-        }
-        
-        self.headingAccuracy = newHeading.headingAccuracy
-        
-        self.delegate?.locationManagerDidUpdateHeading(self, heading: self.heading!, accuracy: newHeading.headingAccuracy)
-    }
-    
-    func locationManagerShouldDisplayHeadingCalibration(_ manager: CLLocationManager) -> Bool {
-        return true
-    }
+        self.headingManager?.requestWhenInUseAuthorization()
+	}
 }
 
+extension LocationManager: CLLocationManagerDelegate {
+	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+		
+	}
+	
+	func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+		if newHeading.headingAccuracy >= 0 {
+			self.heading = newHeading.trueHeading
+		} else {
+			self.heading = newHeading.magneticHeading
+		}
+		
+		self.headingAccuracy = newHeading.headingAccuracy
+		
+		self.delegate?.locationManagerDidUpdateHeading(self, heading: self.heading!, accuracy: newHeading.headingAccuracy)
+	}
+	
+	func locationManagerShouldDisplayHeadingCalibration(_ manager: CLLocationManager) -> Bool {
+		return true
+	}
+}
+
+extension LocationManager: IndoorLocationManagerDelegate {
+	func locationManager(_ manager: IndoorLocationManager, didUpdateLocation location: Location) {
+		DispatchQueue.main.async {
+			let coreLocationInstance = CLLocation.init(latitude: CLLocationDegrees.init(location.lat), longitude: CLLocationDegrees(location.long))
+			self.delegate?.locationManagerDidUpdateLocation(self, location: coreLocationInstance)
+			self.currentLocation = coreLocationInstance
+		}
+	}
+}

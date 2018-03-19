@@ -22,8 +22,8 @@ class NavigationHelper: NSObject {
 				self.getMeasurements(completion: { (response, json) in
 					if response == true {
 						print("WILL TRY TO DETERMINE POSITION --- SUCCESS @ get measurements")
-//						let urlString = "https://nav-backend.herokuapp.com/determinePosition"
-						let urlString = "http://10.40.254.127:8080/determinePosition"
+						let urlString = "https://nav-backend.herokuapp.com/determinePosition"
+//						let urlString = "http://10.40.254.127:8080/determinePosition"
 						guard let json = json else { return }
 						let params = ["measurements": json]
 						HTTPClient.shared.request(urlString: urlString, method: "POST", parameters: params, completion: { (response, data) in
@@ -55,8 +55,8 @@ class NavigationHelper: NSObject {
 	}
 	
 	func getRoute(from start: Location, to finish: Location, completion: @escaping (Bool, [Int]?) -> Void) {
-//		let urlString = "https://nav-backend.herokuapp.com/calculateRoute"
-		let urlString = "http://10.40.254.127:8080/calculateRoute"
+		let urlString = "https://nav-backend.herokuapp.com/calculateRoute"
+//		let urlString = "http://10.40.254.127:8080/calculateRoute"
 		let params = ["startLocationID": start.id,
 					  "finishLocationID": finish.id]
 		HTTPClient.shared.request(urlString: urlString, method: "POST", parameters: params) { (response, data) in
