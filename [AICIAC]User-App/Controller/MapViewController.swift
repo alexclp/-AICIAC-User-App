@@ -47,9 +47,12 @@ class MapViewController: UIViewController {
 			destination.delegate = self
 		} else if segue.identifier == "showARSegue" {
 			let destination = segue.destination as! AugmentedRealityViewController
-			if let current = currentLocation, let dest = destinationLocation {
-				destination.destination = dest
+			if let current = currentLocation {
 				destination.currentPosition = current
+			}
+			
+			if let dest = destinationLocation {
+				destination.destination = dest
 			}
 		}
 	}

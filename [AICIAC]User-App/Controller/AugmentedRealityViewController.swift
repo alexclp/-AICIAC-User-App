@@ -41,12 +41,18 @@ class AugmentedRealityViewController: UIViewController, ARSCNViewDelegate, ARSes
 		locationManager = CLLocationManager()
 		locationManager.delegate = self
 	
-		let pinCoordinate = CLLocationCoordinate2D(latitude: 51.512299055661046, longitude: -0.11711540728893481)
-		let pinLocation = CLLocation(coordinate: pinCoordinate, altitude: 15)
-		let pinImage = UIImage(named: "timetable.png")!
-		let pinLocationNode = LocationAnnotationNode(location: pinLocation, image: pinImage)
+		if let location = currentPosition {
+			sceneLocationView.locationManager.currentLocation = CLLocation(latitude: CLLocationDegrees.init(location.lat), longitude: CLLocationDegrees.init(location.long))
+			sceneLocationView.locationManager.locationManager?.stopUpdatingLocation()
+		}
+		
+//		let pinCoordinate = CLLocationCoordinate2D(latitude: 51.512299055661046, longitude: -0.11711540728893481)
+//		let pinLocation = CLLocation(coordinate: pinCoordinate, altitude: 15)
+//		let pinImage = UIImage(named: "timetable.png")!
+//		let pinLocationNode = LocationAnnotationNode(location: pinLocation, image: pinImage)
 //		pinLocationNode.scaleRelativeToDistance = true
-		sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: pinLocationNode)
+//		sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: pinLocationNode)
+		
 		view.addSubview(sceneLocationView)
 //		destination = Location()
 //		currentPosition = Location()
@@ -62,6 +68,7 @@ class AugmentedRealityViewController: UIViewController, ARSCNViewDelegate, ARSes
 //		}
 		
 //		calculateBearing()
+		placeTimetables()
 	}
 
 	override func viewDidLayoutSubviews() {
@@ -100,10 +107,6 @@ class AugmentedRealityViewController: UIViewController, ARSCNViewDelegate, ARSes
 		}
 	}
 	
-	func createTimetables() {
-		
-	}
-	
 	func calculateBearing() {
 		if angle == -1 {
 			angle = Utils.shared.getBearingBetweenTwoPoints1(point1: currentPosition!, point2: destination!)
@@ -111,8 +114,44 @@ class AugmentedRealityViewController: UIViewController, ARSCNViewDelegate, ARSes
 		}
 	}
 	
-	// MARK: - Data fetching
+	// MARK: - AR Building
 	
+	func placeTimetables() {
+		guard let currentLocation = currentPosition else { return }
+		ARDataHelper.shared.closestLocations(currentLocation: currentLocation) { (response, data) in
+			if response == true {
+				guard let locationsInRooms = data else { return }
+				for (roomName, location) in locationsInRooms {
+					if roomName == "South Wing Corridor" {
+						continue
+					}
+					
+					ARDataHelper.shared.getTimetableImageFor(roomName: roomName, completion: { (response, image) in
+						if response == true {
+							guard let image = image else { return }
+							let pinCoordinate = CLLocationCoordinate2D(latitude: location.lat, longitude: location.long)
+							let pinLocation = CLLocation(coordinate: pinCoordinate, altitude: 5)
+							let pinImage = image
+							let pinLocationNode = LocationAnnotationNode(location: pinLocation, image: pinImage)
+							pinLocationNode.scaleRelativeToDistance = true
+							self.sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: pinLocationNode)
+						}
+					})
+				}
+			}
+		}
+	}
+	
+	private func checkIfComputerLab(roomName: String) -> Bool {
+		let regex = "\\d+.\\d+"
+		if roomName.rangeOfCharacter(from: CharacterSet.init(charactersIn: regex), options: .regularExpression, range: nil) != nil {
+			return true
+		}
+		return false
+	}
+	
+	// MARK: - Data fetching
+	/*
 	func getCloseLocations(completion: @escaping ([String: Location]?) -> Void) {
 		guard let currentLocation = currentPosition else { return }
 		ARDataHelper.shared.closestLocations(currentLocation: currentLocation) { (response, json) in
@@ -137,6 +176,7 @@ class AugmentedRealityViewController: UIViewController, ARSCNViewDelegate, ARSes
 			}
 		}
 	}
+	*/
 }
 
 extension AugmentedRealityViewController: CLLocationManagerDelegate {
