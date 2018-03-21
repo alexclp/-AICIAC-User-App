@@ -105,6 +105,9 @@ class MapViewController: UIViewController {
 						
 						group.notify(queue: DispatchQueue.main, execute: {
 							DispatchQueue.main.async {
+								self.path.sort(by: { (a, b) -> Bool in
+									a.id < b.id
+								})
 								self.drawPath()
 							}
 						})
@@ -116,9 +119,9 @@ class MapViewController: UIViewController {
 	
 	func drawPath() {
 		var first = path[0]
-		print(first)
+		print(first.id)
 		for index in 1..<path.count {
-			print(path[index])
+			print(path[index].id)
 			if let point1 = Utils.interpolatePointToCurrentSize(point: CGPoint(x: first.x, y: first.y), from: CGSize(width: first.standardWidth, height: first.standardHeight), in: self.mapImageView), let point2 = Utils.interpolatePointToCurrentSize(point: CGPoint(x: path[index].x, y: path[index].y), from: CGSize(width: path[index].standardWidth, height: path[index].standardHeight), in: self.mapImageView) {
 				addLine(fromPoint: point1, toPoint: point2, in: self.mapImageView)
 			}
