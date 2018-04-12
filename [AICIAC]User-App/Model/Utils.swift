@@ -32,7 +32,7 @@ class Utils: NSObject {
 	
 	// https://stackoverflow.com/questions/26998029/calculating-bearing-between-two-cllocation-points-in-swift
 	
-	func getBearingBetweenTwoPoints1(point1 : Location, point2 : Location) -> Double {
+	func getBearingBetweenTwoPoints(point1: Location, point2: Location) -> Double {
 		let lat1 = Utils.degreesToRadians(degrees: point1.lat)
 		let lon1 = Utils.degreesToRadians(degrees: point1.long)
 		

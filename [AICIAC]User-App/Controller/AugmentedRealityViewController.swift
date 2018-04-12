@@ -33,10 +33,15 @@ class AugmentedRealityViewController: UIViewController, ARSCNViewDelegate, ARSes
 		super.viewDidLoad()
 		
 		// Set the view's delegate
-//		sceneLocationView.delegate = self
-//		sceneLocationView.showsStatistics = true
-//		sceneLocationView.scene = SCNScene()
-//		sceneLocationView.autoenablesDefaultLighting = true
+		let configuration = ARWorldTrackingConfiguration()
+		configuration.planeDetection = .horizontal
+		sceneView.session.run(configuration)
+		
+		sceneView.delegate = self
+		sceneView.showsStatistics = true
+//		sceneView.scene = SCNScene()
+		sceneView.autoenablesDefaultLighting = true
+		
 		
 		locationManager = CLLocationManager()
 		locationManager.delegate = self
@@ -53,7 +58,7 @@ class AugmentedRealityViewController: UIViewController, ARSCNViewDelegate, ARSes
 //		pinLocationNode.scaleRelativeToDistance = true
 //		sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: pinLocationNode)
 		
-		view.addSubview(sceneLocationView)
+//		sceneView.addSubview(sceneLocationView)
 //		destination = Location()
 //		currentPosition = Location()
 		
@@ -63,30 +68,32 @@ class AugmentedRealityViewController: UIViewController, ARSCNViewDelegate, ARSes
 //		currentPosition?.lat = 51.512549
 //		currentPosition?.long = -0.117021
 		
-//		if currentPosition != nil && destination != nil {
-//			calculateBearing()
-//		}
+		if destination != nil {
+			calculateBearing()
+			showNavigationArrow()
+		}
 		
 //		calculateBearing()
-		placeTimetables()
+//		placeTimetables()
 	}
 
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 		
-		sceneLocationView.frame = view.bounds
+//		sceneLocationView.frame = view.bounds
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 //		configuration.worldAlignment = .gravityAndHeading
 //		sceneLocationView.session.run(configuration)
-		sceneLocationView.run()
+//		sceneLocationView.run()
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
-		sceneLocationView.session.pause()
+//		sceneLocationView.session.pause()
+		sceneView.session.pause()
 		angle = -1
 	}
 	
@@ -109,7 +116,7 @@ class AugmentedRealityViewController: UIViewController, ARSCNViewDelegate, ARSes
 	
 	func calculateBearing() {
 		if angle == -1 {
-			angle = Utils.shared.getBearingBetweenTwoPoints1(point1: currentPosition!, point2: destination!)
+			angle = Utils.shared.getBearingBetweenTwoPoints(point1: currentPosition!, point2: destination!)
 			compassNode?.rotation = SCNVector4(0, 0.5, -4, (angle / 180) * Double.pi)
 		}
 	}

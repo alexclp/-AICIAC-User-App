@@ -73,7 +73,7 @@ class MapViewController: UIViewController {
 	
 	func placeLocation(location: Location, in view: UIView) {
 		guard let interpolatedPoint = Utils.interpolatePointToCurrentSize(point: CGPoint(x: location.x, y: location.y), from: CGSize(width: location.standardWidth, height: location.standardHeight), in: view) else { return }
-		let locationView = UIView(frame: CGRect(x: interpolatedPoint.x, y: interpolatedPoint.y, width: 10.0, height: 10.0))
+		let locationView = UIView(frame: CGRect(x: interpolatedPoint.x, y: interpolatedPoint.y, width: 8.0, height: 8.0))
 		locationView.backgroundColor = UIColor.blue
 		view.addSubview(locationView)
 		self.currentLocation = location
@@ -127,21 +127,6 @@ class MapViewController: UIViewController {
 			}
 			first = path[index]
 		}
-	}
-	
-	func generateDirections() -> [String] {
-		var instructions = [String]()
-		var prev = path[0]
-		for index in 1..<path.count {
-			let current = path[index]
-			
-			if current.roomID != prev.roomID {
-				instructions.append("Exit the room.")
-			}
-			
-			prev = current
-		}
-		return instructions
 	}
 	
 	func addLine(fromPoint start: CGPoint, toPoint end: CGPoint, in view: UIView) {
