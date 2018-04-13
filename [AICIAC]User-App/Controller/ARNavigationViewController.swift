@@ -10,7 +10,7 @@ import UIKit
 import ARKit
 import CoreLocation
 
-class AugmentedRealityViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
+class ARNavigationViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
 
 	// MARK: - IBOutlets
 	
@@ -33,19 +33,10 @@ class AugmentedRealityViewController: UIViewController, ARSCNViewDelegate, ARSes
 		super.viewDidLoad()
 		
 		// Set the view's delegate
-		let configuration = ARWorldTrackingConfiguration()
-		configuration.planeDetection = .horizontal
-		sceneView.session.run(configuration)
-		
-		sceneView.delegate = self
-		sceneView.showsStatistics = true
-//		sceneView.scene = SCNScene()
-		sceneView.autoenablesDefaultLighting = true
-		
 		
 		locationManager = CLLocationManager()
 		locationManager.delegate = self
-	
+		
 		if let location = currentPosition {
 			sceneLocationView.locationManager.currentLocation = CLLocation(latitude: CLLocationDegrees.init(location.lat), longitude: CLLocationDegrees.init(location.long))
 			sceneLocationView.locationManager.locationManager?.stopUpdatingLocation()
@@ -57,31 +48,28 @@ class AugmentedRealityViewController: UIViewController, ARSCNViewDelegate, ARSes
 //		let pinLocationNode = LocationAnnotationNode(location: pinLocation, image: pinImage)
 //		pinLocationNode.scaleRelativeToDistance = true
 //		sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: pinLocationNode)
-		
+
 //		sceneView.addSubview(sceneLocationView)
-//		destination = Location()
-//		currentPosition = Location()
-		
-//		destination?.lat = 51.510790
-//		destination?.long = -0.116974
-		
-//		currentPosition?.lat = 51.512549
-//		currentPosition?.long = -0.117021
+//		sceneLocationView.run()
+//		sceneView.addSubview(sceneLocationView)
+//		placeTimetables()
 		
 		if destination != nil {
+			let configuration = ARWorldTrackingConfiguration()
+			configuration.planeDetection = .horizontal
+			sceneView.session.run(configuration)
+			
+			sceneView.delegate = self
+			sceneView.showsStatistics = true
+			//		sceneView.scene = SCNScene()
+			sceneView.autoenablesDefaultLighting = true
+			
 			calculateBearing()
 			showNavigationArrow()
 		}
-		
-//		calculateBearing()
-//		placeTimetables()
 	}
 
-	override func viewDidLayoutSubviews() {
-		super.viewDidLayoutSubviews()
-		
-//		sceneLocationView.frame = view.bounds
-	}
+	
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
@@ -123,31 +111,7 @@ class AugmentedRealityViewController: UIViewController, ARSCNViewDelegate, ARSes
 	
 	// MARK: - AR Building
 	
-	func placeTimetables() {
-		guard let currentLocation = currentPosition else { return }
-		ARDataHelper.shared.closestLocations(currentLocation: currentLocation) { (response, data) in
-			if response == true {
-				guard let locationsInRooms = data else { return }
-				for (roomName, location) in locationsInRooms {
-					if roomName == "South Wing Corridor" {
-						continue
-					}
-					
-					ARDataHelper.shared.getTimetableImageFor(roomName: roomName, completion: { (response, image) in
-						if response == true {
-							guard let image = image else { return }
-							let pinCoordinate = CLLocationCoordinate2D(latitude: location.lat, longitude: location.long)
-							let pinLocation = CLLocation(coordinate: pinCoordinate, altitude: 5)
-							let pinImage = image
-							let pinLocationNode = LocationAnnotationNode(location: pinLocation, image: pinImage)
-							pinLocationNode.scaleRelativeToDistance = true
-							self.sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: pinLocationNode)
-						}
-					})
-				}
-			}
-		}
-	}
+	
 	
 	private func checkIfComputerLab(roomName: String) -> Bool {
 		let regex = "\\d+.\\d+"
@@ -186,7 +150,7 @@ class AugmentedRealityViewController: UIViewController, ARSCNViewDelegate, ARSes
 	*/
 }
 
-extension AugmentedRealityViewController: CLLocationManagerDelegate {
+extension ARNavigationViewController: CLLocationManagerDelegate {
 	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
 		switch status {
 		case .notDetermined:

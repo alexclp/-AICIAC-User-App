@@ -45,14 +45,19 @@ class MapViewController: UIViewController {
 		if segue.identifier == "showDestinationsSegue" {
 			let destination = segue.destination as! DestinationsViewController
 			destination.delegate = self
-		} else if segue.identifier == "showARSegue" {
-			let destination = segue.destination as! AugmentedRealityViewController
+		} else if segue.identifier == "showARNavigationSegue" {
+			let destination = segue.destination as! ARNavigationViewController
 			if let current = currentLocation {
 				destination.currentPosition = current
 			}
 			
 			if let dest = destinationLocation {
 				destination.destination = dest
+			}
+		} else if segue.identifier == "showARInformationSegue" {
+			let destination = segue.destination as! ARLocationInformationViewController
+			if let current = currentLocation {
+				destination.currentPosition = current
 			}
 		}
 	}
@@ -148,7 +153,24 @@ class MapViewController: UIViewController {
 	}
 	
 	@objc func cameraButtonPressed(sender: UIBarButtonItem) {
-		performSegue(withIdentifier: "showARSegue", sender: self)
+		// performSegue(withIdentifier: "showARSegue", sender: self)
+		let alert = UIAlertController(title: "Please select an option:", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
+		let navigationButton = UIAlertAction(title: "Show navigation guidance", style: .default) { (alert) -> Void in
+			self.performSegue(withIdentifier: "showARNavigationSegue", sender: self)
+		}
+		
+		let informationButton = UIAlertAction(title: "Show information from around my location", style: .default) { (alert) -> Void in
+			self.performSegue(withIdentifier: "showARInformationSegue", sender: self)
+		}
+		
+		let cancelButton = UIAlertAction(title: "Cancel", style: .cancel) { (alert) -> Void in
+			self.dismiss(animated: true, completion: nil)
+		}
+		
+		alert.addAction(navigationButton)
+		alert.addAction(informationButton)
+		alert.addAction(cancelButton)
+		self.present(alert, animated: true, completion: nil)
 	}
 }
 

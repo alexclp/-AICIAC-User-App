@@ -33,7 +33,7 @@
 		0F38D7232051899B00C6921E /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F38D7202051899B00C6921E /* menu.png */; };
 		0F38D7242051899B00C6921E /* menu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F38D7212051899B00C6921E /* menu@3x.png */; };
 		0F92C4BC20597BBA00D9B50A /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F92C4BB20597BBA00D9B50A /* ARKit.framework */; };
-		0F92C4BE20597BEB00D9B50A /* AugmentedRealityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F92C4BD20597BEB00D9B50A /* AugmentedRealityViewController.swift */; };
+		0F92C4BE20597BEB00D9B50A /* ARNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F92C4BD20597BEB00D9B50A /* ARNavigationViewController.swift */; };
 		0F92C4C0205985E200D9B50A /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F92C4BF205985E200D9B50A /* art.scnassets */; };
 		0F92C4C2205985F200D9B50A /* Assets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F92C4C1205985F200D9B50A /* Assets.scnassets */; };
 		0F95B533204833FA00E42648 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95B532204833FA00E42648 /* HTTPClient.swift */; };
@@ -49,6 +49,7 @@
 		0FB7BA00204EE49E007CE27C /* bh_6th.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB7B9FE204EE49E007CE27C /* bh_6th.png */; };
 		0FB7BA01204EE49E007CE27C /* bh_5th.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB7B9FF204EE49E007CE27C /* bh_5th.png */; };
 		0FD8A07E20598C9E00814B59 /* timetable.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FD8A07D20598C9E00814B59 /* timetable.png */; };
+		0FDAA421207FADD200D5DC8D /* ARLocationInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDAA420207FADD200D5DC8D /* ARLocationInformationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,7 +81,7 @@
 		0F38D7202051899B00C6921E /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		0F38D7212051899B00C6921E /* menu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@3x.png"; sourceTree = "<group>"; };
 		0F92C4BB20597BBA00D9B50A /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
-		0F92C4BD20597BEB00D9B50A /* AugmentedRealityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AugmentedRealityViewController.swift; sourceTree = "<group>"; };
+		0F92C4BD20597BEB00D9B50A /* ARNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARNavigationViewController.swift; sourceTree = "<group>"; };
 		0F92C4BF205985E200D9B50A /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		0F92C4C1205985F200D9B50A /* Assets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Assets.scnassets; sourceTree = "<group>"; };
 		0F95B532204833FA00E42648 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
@@ -96,6 +97,7 @@
 		0FB7B9FE204EE49E007CE27C /* bh_6th.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bh_6th.png; sourceTree = "<group>"; };
 		0FB7B9FF204EE49E007CE27C /* bh_5th.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bh_5th.png; sourceTree = "<group>"; };
 		0FD8A07D20598C9E00814B59 /* timetable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timetable.png; sourceTree = "<group>"; };
+		0FDAA420207FADD200D5DC8D /* ARLocationInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARLocationInformationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,7 +231,8 @@
 				0F34AECC202B338200559EDB /* InitialViewController.swift */,
 				0F95B55A2048546100E42648 /* MapViewController.swift */,
 				0FB7B9F9204D81E5007CE27C /* DestinationsViewController.swift */,
-				0F92C4BD20597BEB00D9B50A /* AugmentedRealityViewController.swift */,
+				0F92C4BD20597BEB00D9B50A /* ARNavigationViewController.swift */,
+				0FDAA420207FADD200D5DC8D /* ARLocationInformationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				0FB7B9FA204D81E5007CE27C /* DestinationsViewController.swift in Sources */,
 				0F1504FA205D519C00884984 /* SceneLocationView.swift in Sources */,
 				0F1504FD205D519C00884984 /* LocationNode.swift in Sources */,
+				0FDAA421207FADD200D5DC8D /* ARLocationInformationViewController.swift in Sources */,
 				0F95B55D2049A53300E42648 /* NavigationHelper.swift in Sources */,
 				0F1504FC205D519C00884984 /* LocationManager.swift in Sources */,
 				0F150500205D519C00884984 /* CGPoint+Extensions.swift in Sources */,
@@ -352,7 +356,7 @@
 				0F150502205D519C00884984 /* SceneLocationEstimate.swift in Sources */,
 				0F1504EE205D4D9500884984 /* ARDataHelper.swift in Sources */,
 				0F95B5352048344000E42648 /* Extensions.swift in Sources */,
-				0F92C4BE20597BEB00D9B50A /* AugmentedRealityViewController.swift in Sources */,
+				0F92C4BE20597BEB00D9B50A /* ARNavigationViewController.swift in Sources */,
 				0F95B561204AC65400E42648 /* Location.swift in Sources */,
 				0F1D94C8205FCA9D00E14691 /* IndoorLocationManager.swift in Sources */,
 				0F1504FE205D519C00884984 /* FloatingPoint+Radians.swift in Sources */,

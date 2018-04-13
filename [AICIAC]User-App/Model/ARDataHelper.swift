@@ -36,6 +36,7 @@ class ARDataHelper: NSObject {
 								toReturn[key] = location
 							}
 						}
+						print(toReturn)
 						completion(true, toReturn)
 					} else {
 						completion(false, nil)
@@ -49,7 +50,7 @@ class ARDataHelper: NSObject {
 	}
 	
 	func getTimetableImageFor(roomName: String, completion: @escaping (Bool, UIImage?) -> Void) {
-		let url = "https://ebecf14f.ngrok.io/timetable/\(roomName)"
+		let url = "https://4582f1d2.ngrok.io/timetable/\(roomName)"
 		HTTPClient.shared.request(urlString: url, method: "GET", parameters: nil) { (response, data) in
 			if response == true {
 				guard let data = data else { return }
