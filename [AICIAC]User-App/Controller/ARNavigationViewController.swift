@@ -42,18 +42,6 @@ class ARNavigationViewController: UIViewController, ARSCNViewDelegate, ARSession
 			sceneLocationView.locationManager.locationManager?.stopUpdatingLocation()
 		}
 		
-//		let pinCoordinate = CLLocationCoordinate2D(latitude: 51.512299055661046, longitude: -0.11711540728893481)
-//		let pinLocation = CLLocation(coordinate: pinCoordinate, altitude: 15)
-//		let pinImage = UIImage(named: "timetable.png")!
-//		let pinLocationNode = LocationAnnotationNode(location: pinLocation, image: pinImage)
-//		pinLocationNode.scaleRelativeToDistance = true
-//		sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: pinLocationNode)
-
-//		sceneView.addSubview(sceneLocationView)
-//		sceneLocationView.run()
-//		sceneView.addSubview(sceneLocationView)
-//		placeTimetables()
-		
 		if destination != nil {
 			let configuration = ARWorldTrackingConfiguration()
 			configuration.planeDetection = .horizontal
@@ -68,19 +56,9 @@ class ARNavigationViewController: UIViewController, ARSCNViewDelegate, ARSession
 			showNavigationArrow()
 		}
 	}
-
-	
-	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-//		configuration.worldAlignment = .gravityAndHeading
-//		sceneLocationView.session.run(configuration)
-//		sceneLocationView.run()
-	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
-//		sceneLocationView.session.pause()
 		sceneView.session.pause()
 		angle = -1
 	}
@@ -108,46 +86,6 @@ class ARNavigationViewController: UIViewController, ARSCNViewDelegate, ARSession
 			compassNode?.rotation = SCNVector4(0, 0.5, -4, (angle / 180) * Double.pi)
 		}
 	}
-	
-	// MARK: - AR Building
-	
-	
-	
-	private func checkIfComputerLab(roomName: String) -> Bool {
-		let regex = "\\d+.\\d+"
-		if roomName.rangeOfCharacter(from: CharacterSet.init(charactersIn: regex), options: .regularExpression, range: nil) != nil {
-			return true
-		}
-		return false
-	}
-	
-	// MARK: - Data fetching
-	/*
-	func getCloseLocations(completion: @escaping ([String: Location]?) -> Void) {
-		guard let currentLocation = currentPosition else { return }
-		ARDataHelper.shared.closestLocations(currentLocation: currentLocation) { (response, json) in
-			if response == true {
-				guard let json = json else { return }
-				var toReturn = [String: Location]()
-				for (key, object) in json {
-					if let object = object as? [String: Any] {
-						let location = Location.init()
-						location.id = object["id"] as! Int
-						location.lat = object["latitude"] as! Double
-						location.long = object["longitude"] as! Double
-						location.x = object["x"] as! Double
-						location.y = object["y"] as! Double
-						location.standardWidth = object["standardWidth"] as! Double
-						location.standardHeight = object["standardHeight"] as! Double
-						location.roomID = object["roomID"] as! Int
-						toReturn[key] = location
-					}
-				}
-				completion(toReturn)
-			}
-		}
-	}
-	*/
 }
 
 extension ARNavigationViewController: CLLocationManagerDelegate {

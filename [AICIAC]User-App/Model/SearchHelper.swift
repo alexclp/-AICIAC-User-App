@@ -15,8 +15,8 @@ class SearchHelper: NSObject {
 	
 	private let baseURL = "https://wifi-nav-api.herokuapp.com"
 	
-	func searchRoom(query: String, completion: @escaping (Bool, [Room]?) -> Void) {
-		let params = ["query": query]
+	func searchRoom(query: String, floorNumber: Int, completion: @escaping (Bool, [Room]?) -> Void) {
+		let params = ["query": query, "floorNumber": floorNumber] as [String: Any]
 		
 		HTTPClient.shared.request(urlString: "\(baseURL)/rooms/search", method: "POST", parameters: params) { (response, data) in
 			

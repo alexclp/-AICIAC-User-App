@@ -45,6 +45,7 @@ class MapViewController: UIViewController {
 		if segue.identifier == "showDestinationsSegue" {
 			let destination = segue.destination as! DestinationsViewController
 			destination.delegate = self
+			destination.floorNumber = currentLocation!.floorNumber
 		} else if segue.identifier == "showARNavigationSegue" {
 			let destination = segue.destination as! ARNavigationViewController
 			if let current = currentLocation {

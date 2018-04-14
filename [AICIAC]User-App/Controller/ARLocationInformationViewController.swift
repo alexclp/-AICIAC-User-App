@@ -69,4 +69,30 @@ class ARLocationInformationViewController: UIViewController, CLLocationManagerDe
 			}
 		}
 	}
+	
+	func placeAvailableComputers() {
+		guard let currentLocation = currentPosition else { return }
+		ARDataHelper.shared.closestLocations(currentLocation: currentLocation) { (response, data) in
+			if response == true {
+				guard let locationsInRooms = data else { return }
+				for (roomName, location) in locationsInRooms {
+					if roomName == "South Wing Corridor" {
+						continue
+					}
+					
+					ARDataHelper.shared.getComputersAvailability(roomName: roomName, completion: { (response, image) in
+						if response == true {
+							guard let image = image else { return }
+							let pinCoordinate = CLLocationCoordinate2D(latitude: location.lat, longitude: location.long)
+							let pinLocation = CLLocation(coordinate: pinCoordinate, altitude: 0)
+							let pinImage = image
+							let pinLocationNode = LocationAnnotationNode(location: pinLocation, image: pinImage)
+							pinLocationNode.scaleRelativeToDistance = true
+							self.sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: pinLocationNode)
+						}
+					})
+				}
+ 			}
+		}
+	}
 }

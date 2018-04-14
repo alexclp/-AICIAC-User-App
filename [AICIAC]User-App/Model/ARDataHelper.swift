@@ -64,4 +64,20 @@ class ARDataHelper: NSObject {
 			}
 		}
 	}
+	
+	func getComputersAvailability(roomName: String, completion: @escaping (Bool, UIImage?) -> Void) {
+		let url = "/pcfree/\(roomName)"
+		HTTPClient.shared.request(urlString: url, method: "GET", parameters: nil) { (response, data) in
+			if response == true {
+				guard let data = data else { return }
+				if let image = UIImage(data: data) {
+					completion(true, image)
+				} else {
+					completion(false, nil)
+				}
+			} else {
+				completion(false, nil)
+			}
+		}
+	}
 }

@@ -20,6 +20,7 @@ class DestinationsViewController: UIViewController {
 	var rooms = [Room]()
 	var filteredRooms = [Room]()
 	let searchController = UISearchController(searchResultsController: nil)
+	var floorNumber = 0
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,7 @@ class DestinationsViewController: UIViewController {
     }
 	
 	func searchForRooms(query: String) {
-		SearchHelper.shared.searchRoom(query: query) { (response, json) in
+		SearchHelper.shared.searchRoom(query: query, floorNumber: floorNumber) { (response, json) in
 			if response == true {
 				guard let json = json else { return }
 				self.rooms = json
