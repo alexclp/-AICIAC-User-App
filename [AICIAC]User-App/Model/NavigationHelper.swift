@@ -54,7 +54,7 @@ class NavigationHelper: NSObject {
 		}
 	}
 	
-	func getRoute(from start: Location, to finish: Location, completion: @escaping (Bool, [Int]?) -> Void) {
+	func getRoute(from start: Location, to finish: Location, completion: @escaping (Bool, [String: Any]?) -> Void) {
 		let urlString = "https://nav-backend.herokuapp.com/calculateRoute"
 //		let urlString = "http://10.40.254.127:8080/calculateRoute"
 		let params = ["startLocationID": start.id,
@@ -64,10 +64,7 @@ class NavigationHelper: NSObject {
 				guard let data = data else { return }
 				do {
 					if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-						if let path = json["path"] as? [Int] {
-							print(path)
-							completion(true, path)
-						}
+						completion(true, json)
 					}
 				} catch {
 					print(error.localizedDescription)

@@ -10,6 +10,10 @@ import UIKit
 
 class MapViewController: UIViewController {
 	@IBOutlet weak var mapImageView: UIImageView!
+	@IBOutlet weak var distanceLabel: UILabel!
+	@IBOutlet weak var etaLabel: UILabel!
+	
+	let averageWalkSpeed = 1.4
 	
 	var currentLocation: Location? = nil
 	var destinationLocation: Location? = nil
@@ -90,33 +94,46 @@ class MapViewController: UIViewController {
 		NavigationHelper.shared.getConnectingLocation(in: destination) { (success, location) in
 			if success == true {
 				self.destinationLocation = location
-				NavigationHelper.shared.getRoute(from: self.currentLocation!, to: location!, completion: { (success, path) in
+				NavigationHelper.shared.getRoute(from: self.currentLocation!, to: location!, completion: { (success, navigationData) in
 					if success == true {
-						let group = DispatchGroup()
-						for element in path! {
-							group.enter()
-							NavigationHelper.shared.getLocation(with: element, completion: { (response, location) in
-								if response == true {
-									DispatchQueue.main.async {
-										guard let interpolatedPoint = Utils.interpolatePointToCurrentSize(point: CGPoint(x: location!.x, y: location!.y), from: CGSize(width: location!.standardWidth, height: location!.standardHeight), in: self.mapImageView) else { return }
-										let view = UIView(frame: CGRect(x: interpolatedPoint.x, y: interpolatedPoint.y, width: 10.0, height: 10.0))
-										view.backgroundColor = UIColor.red
-										self.mapImageView.addSubview(view)
-										self.path.append(location!)
-									}
-								}
-								group.leave()
-							})
+						guard let navigationData = navigationData else { return }
+						
+						if let distance = navigationData["distance"] as? Double {
+							let eta = distance / self.averageWalkSpeed
+							DispatchQueue.main.async {
+//								self.etaLabel.text = "ETA: \(Int(eta)) seconds"
+//								self.distanceLabel.text = "\(Int(distance))m"
+								self.etaLabel.text = "\(Int(distance))meters, \(Int(eta))seconds"
+							}
 						}
 						
-						group.notify(queue: DispatchQueue.main, execute: {
-							DispatchQueue.main.async {
-								self.path.sort(by: { (a, b) -> Bool in
-									a.id < b.id
+						if let path = navigationData["path"] as? [Int] {
+							let group = DispatchGroup()
+							for element in path {
+								group.enter()
+								NavigationHelper.shared.getLocation(with: element, completion: { (response, location) in
+									if response == true {
+										DispatchQueue.main.async {
+											guard let interpolatedPoint = Utils.interpolatePointToCurrentSize(point: CGPoint(x: location!.x, y: location!.y), from: CGSize(width: location!.standardWidth, height: location!.standardHeight), in: self.mapImageView) else { return }
+											let view = UIView(frame: CGRect(x: interpolatedPoint.x, y: interpolatedPoint.y, width: 10.0, height: 10.0))
+											view.backgroundColor = UIColor.red
+											self.mapImageView.addSubview(view)
+											self.path.append(location!)
+										}
+									}
+									group.leave()
 								})
-								self.drawPath()
 							}
-						})
+							
+							group.notify(queue: DispatchQueue.main, execute: {
+								DispatchQueue.main.async {
+									self.path.sort(by: { (a, b) -> Bool in
+										a.id < b.id
+									})
+									self.drawPath()
+								}
+							})
+						}
 					}
 				})
 			}
